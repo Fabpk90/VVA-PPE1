@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VVA_PPE1.Actor
 {
-    public class Inscrit
+   public class Inscrit
     {
         private string nom;
         private string prenom;
