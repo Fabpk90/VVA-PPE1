@@ -8,13 +8,39 @@ namespace VVA_PPE1.Actor
 {
     class Encadrant : Inscrit
     {
+
         private string mail;
-        private string etat_service;
+        private string etatService;
 
-
-        public Encadrant(string nom, string prenom, string mail, string etat_service, DateTime dt_naissance) : base(nom, prenom, dt_naissance)
+        public string Mail
         {
-            this.etat_service = etat_service;
+            get
+            {
+                return mail;
+            }
+
+            set
+            {
+                mail = value;
+            }
+        }
+
+        public string EtatService
+        {
+            get
+            {
+                return etatService;
+            }
+
+            set
+            {
+                etatService = value;
+            }
+        }
+
+        public Encadrant(int numero, string nom, string prenom, string mail, string etatService, DateTime dtNaissance) : base(nom, prenom, dtNaissance, numero)
+        {
+            this.etatService = etatService;
             this.mail = mail;
         }
     }

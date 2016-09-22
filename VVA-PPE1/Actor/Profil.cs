@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace VVA_PPE1.Actor
 {
 
-    enum Etype_profil
+    enum EtypeProfil
     {
         LOISANT = 0,
         ENCADRANT,
@@ -18,17 +18,56 @@ namespace VVA_PPE1.Actor
     {
         private string mdp;
 
-        private DateTime dt_inscription;
-        private DateTime dt_validite;
+        private DateTime dtInscription;
+        private DateTime dtValidite;
 
-        private Etype_profil type_profil;
+        private EtypeProfil EtypeProfil;
 
-        public Profil(string mdp, DateTime dt_inscription, DateTime dt_validite)
+        public string Mdp
+        {
+            get
+            {
+                return mdp;
+            }
+
+            set
+            {
+                mdp = value;
+            }
+        }
+
+        public DateTime DtInscription
+        {
+            get
+            {
+                return dtInscription;
+            }
+
+            set
+            {
+                dtInscription = value;
+            }
+        }
+
+        public DateTime DtValidite
+        {
+            get
+            {
+                return dtValidite;
+            }
+
+            set
+            {
+                dtValidite = value;
+            }
+        }
+
+        public Profil(string mdp, DateTime dtInscription, DateTime dtValidite)
         {
             this.mdp = mdp;
 
-            this.dt_inscription = dt_inscription;
-            this.dt_validite = dt_validite;
+            this.dtInscription = dtInscription;
+            this.dtValidite = dtValidite;
         }
     }
 }

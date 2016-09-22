@@ -10,15 +10,54 @@ namespace VVA_PPE1.Actor
     {
         private Profil profil;
 
-        private DateTime dt_debut_sejour;
-        private DateTime dt_fin_sejour;
+        private DateTime dtDebutSejour;
+        private DateTime dtFinSejour;
 
-        public Loisant(string nom, string prenom, DateTime dt_naissance, DateTime dt_debut_sejour, DateTime dt_fin_sejour) 
-            : base(nom, prenom, dt_naissance)
+        internal Profil Profil
+        {
+            get
+            {
+                return profil;
+            }
+
+            set
+            {
+                profil = value;
+            }
+        }
+
+        public DateTime DtDebutSejour
+        {
+            get
+            {
+                return dtDebutSejour;
+            }
+
+            set
+            {
+                dtDebutSejour = value;
+            }
+        }
+
+        public DateTime DtFinSejour
+        {
+            get
+            {
+                return dtFinSejour;
+            }
+
+            set
+            {
+                dtFinSejour = value;
+            }
+        }
+
+        public Loisant(int numero, string nom, string prenom, DateTime dtNaissance, DateTime dtDebutSejour, DateTime dtFinSejour) 
+            : base(nom, prenom, dtNaissance, numero)
         {
             
-            this.dt_debut_sejour = dt_debut_sejour;
-            this.dt_fin_sejour = dt_fin_sejour;
+            this.dtDebutSejour = dtDebutSejour;
+            this.dtFinSejour = dtFinSejour;
                            
         }
 
@@ -27,9 +66,9 @@ namespace VVA_PPE1.Actor
             this.profil = profil;
         }
 
-        public void SetProfil(string mdp, DateTime dt_inscription, DateTime dt_validite)
+        public void SetProfil(string mdp, DateTime dtInscription, DateTime dtValidite)
         {
-            this.profil = new Profil(mdp, dt_inscription, dt_validite);
+            this.profil = new Profil(mdp, dtInscription, dtValidite);
         }
     }
 }

@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity\Activite.cs" />
+    <Compile Include="Activity\Animation.cs" />
+    <Compile Include="Activity\Inscription.cs" />
     <Compile Include="Actor\Encadrant.cs" />
     <Compile Include="Actor\Inscrit.cs" />
     <Compile Include="Actor\Loisant.cs" />
