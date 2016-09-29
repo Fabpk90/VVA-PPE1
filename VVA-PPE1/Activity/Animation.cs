@@ -35,6 +35,8 @@ namespace VVA_PPE1.Activity
 
         private EdiffAnim difficulte;
 
+        private Animation_Type animType;
+
         public string Nom
         {
             get
@@ -139,6 +141,8 @@ namespace VVA_PPE1.Activity
             }
         }
 
+        public Animation() { }
+
         public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, string commentaire, EdiffAnim difficulte)
         {
             this.code = code;
@@ -157,6 +161,15 @@ namespace VVA_PPE1.Activity
             this.commentaire = commentaire;
 
             this.difficulte = difficulte;
+
+            animType = new Animation_Type();
+        }
+
+        public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, 
+            string commentaire, EdiffAnim difficulte, int codeAnim, string nomAnim) 
+            : this(code, nom, dtCreation, dtValidite, limiteAge, tarif, nbPlace, desc, commentaire, difficulte)
+        {
+            animType = new Animation_Type(codeAnim, nomAnim);
         }
     }
 }
