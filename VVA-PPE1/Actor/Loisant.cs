@@ -52,6 +52,11 @@ namespace VVA_PPE1.Actor
             }
         }
 
+        public Loisant()
+        {
+
+        }
+
         public Loisant(int numero, string nom, string prenom, DateTime dtNaissance, DateTime dtDebutSejour, DateTime dtFinSejour) 
             : base(nom, prenom, dtNaissance, numero)
         {

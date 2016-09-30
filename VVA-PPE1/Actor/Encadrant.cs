@@ -12,6 +12,8 @@ namespace VVA_PPE1.Actor
         private string mail;
         private string etatService;
 
+        private Profil profil;
+
         public string Mail
         {
             get
@@ -38,10 +40,19 @@ namespace VVA_PPE1.Actor
             }
         }
 
-        public Encadrant(int numero, string nom, string prenom, string mail, string etatService, DateTime dtNaissance) : base(nom, prenom, dtNaissance, numero)
+        public Encadrant(int numero, string nom, string prenom, string mail, string etatService, DateTime dtNaissance, 
+            string mdpProfil, DateTime dtInscriptionProfil, DateTime dtValiditeProfil) 
+            : base(nom, prenom, dtNaissance, numero)
         {
             this.etatService = etatService;
             this.mail = mail;
+
+            profil = new Profil(mdpProfil, dtInscriptionProfil, dtValiditeProfil);
+        }
+
+        public Encadrant()
+        {
+            this.Numero = -1;
         }
     }
 }

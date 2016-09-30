@@ -67,6 +67,8 @@ namespace VVA_PPE1.Actor
             }
         }
 
+        public Inscrit() { }
+
         public Inscrit(string nom, string prenom, DateTime dtNaissance, int numero)
         {
             this.nom = nom;
