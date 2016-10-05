@@ -141,6 +141,19 @@ namespace VVA_PPE1.Activity
             }
         }
 
+        public uint Duree
+        {
+            get
+            {
+                return duree;
+            }
+
+            set
+            {
+                duree = value;
+            }
+        }
+
         public Animation() { }
 
         public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, string commentaire, EdiffAnim difficulte)
@@ -170,6 +183,12 @@ namespace VVA_PPE1.Activity
             : this(code, nom, dtCreation, dtValidite, limiteAge, tarif, nbPlace, desc, commentaire, difficulte)
         {
             animType = new Animation_Type(codeAnim, nomAnim);
+        }
+
+
+        public override string ToString()
+        {
+            return nom;
         }
     }
 }

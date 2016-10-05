@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VVA_PPE1.Actor
 {
-    class Encadrant : Inscrit
+  public  class Encadrant : Inscrit
     {
 
         private string mail;

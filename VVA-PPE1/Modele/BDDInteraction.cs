@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using VVA_PPE1.Actor;
+using VVA_PPE1.Activity;
 
 namespace VVA_PPE1.Modele
 {
@@ -41,19 +42,31 @@ namespace VVA_PPE1.Modele
 
             rdr = cmd.ExecuteReader();
 
+            Encadrant enc = new Encadrant();
+
             //check si il y a un résultat
             if(rdr.Read())
             {
-                return new Encadrant(rdr.GetInt32("NOENCADRANT"), rdr.GetString("NOMENCADRANT"), rdr.GetString("PRENOMENCADRANT"),
+                enc = new Encadrant(rdr.GetInt32("NOENCADRANT"), rdr.GetString("NOMENCADRANT"), rdr.GetString("PRENOMENCADRANT"),
                     rdr.GetString("ADRMAILENCADRANT"), rdr.GetString("ETATSERVICE"), DateTime.Parse(rdr.GetString("DATENAISENCADRANT"))
                     , rdr.GetString("MDP"), DateTime.Parse(rdr.GetString("DATEINSPRO")), DateTime.Parse(rdr.GetString("DATEVALIDITE")) );
 
+                rdr.Close();
+
+                return enc;
+
 
             }
-            else
-            {
-                return new Encadrant();
-            }
+
+            rdr.Close();       
+            return enc;
+          
+        }
+
+       public static void Deconnection()
+        {
+            rdr.Close();
+            conn.Close();
         }
 
         public static Loisant getLoisant()
@@ -61,6 +74,35 @@ namespace VVA_PPE1.Modele
             string query = "SELECT * FROM";
 
             return new Loisant();
+        }
+
+        public static List<Animation> getAnimations()
+        {
+            string query = "SELECT * FROM ANIMATION";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+            
+
+            List<Animation> listAnim = new List<Animation>();
+
+            Animation anim = new Animation();
+     
+            while (rdr.Read())
+            {
+                anim.Nom = rdr.GetString("NOMANIM");
+
+                anim.DtCreation = DateTime.Parse(rdr.GetString("DATECREATIONANIM"));
+                anim.DtValidite = DateTime.Parse(rdr.GetString("DATEVALIDITEANIM"));
+
+                anim.Desc = rdr.GetString("DESCRIPTANIM");
+                anim.Commentaire = rdr.GetString("COMMENTANIM");
+
+                listAnim.Add(anim);
+            }
+
+            return listAnim;
         }
     }
 }

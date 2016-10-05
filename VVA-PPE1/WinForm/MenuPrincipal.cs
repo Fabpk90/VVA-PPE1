@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VVA_PPE1.Actor;
 using VVA_PPE1.Modele;
+using VVA_PPE1.WinForm;
 
 namespace VVA_PPE1
 {
@@ -40,6 +41,11 @@ namespace VVA_PPE1
                     Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text);
 
                     MessageBox.Show(encadrant.ToString());
+
+                    MenuEncadrant menu = new MenuEncadrant(encadrant, this);
+
+                    menu.Show();
+                    this.Hide();
                 }
                 else // loisant
                 {

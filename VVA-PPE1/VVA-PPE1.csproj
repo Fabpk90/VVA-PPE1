@@ -58,16 +58,43 @@
     <Compile Include="Actor\Inscrit.cs" />
     <Compile Include="Actor\Loisant.cs" />
     <Compile Include="Actor\Profil.cs" />
-    <Compile Include="Form\MenuPrincipal.cs">
+    <Compile Include="WinForm\Encadrant\MenuEncadrant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\MenuPrincipal.Designer.cs">
+    <Compile Include="WinForm\Encadrant\MenuEncadrant.Designer.cs">
+      <DependentUpon>MenuEncadrant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Loisant\MenuLoisant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Loisant\MenuLoisant.Designer.cs">
+      <DependentUpon>MenuLoisant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\MenuAnimationListe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\MenuAnimationListe.Designer.cs">
+      <DependentUpon>MenuAnimationListe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Modele\BDDInteraction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form\MenuPrincipal.resx">
+    <EmbeddedResource Include="WinForm\Encadrant\MenuEncadrant.resx">
+      <DependentUpon>MenuEncadrant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Loisant\MenuLoisant.resx">
+      <DependentUpon>MenuLoisant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\MenuAnimationListe.resx">
+      <DependentUpon>MenuAnimationListe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
