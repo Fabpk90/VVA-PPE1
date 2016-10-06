@@ -58,16 +58,22 @@
     <Compile Include="Actor\Inscrit.cs" />
     <Compile Include="Actor\Loisant.cs" />
     <Compile Include="Actor\Profil.cs" />
-    <Compile Include="WinForm\Encadrant\MenuEncadrant.cs">
+    <Compile Include="WinForm\FormEncadrant\MenuAnimationAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinForm\Encadrant\MenuEncadrant.Designer.cs">
+    <Compile Include="WinForm\FormEncadrant\MenuAnimationAdd.Designer.cs">
+      <DependentUpon>MenuAnimationAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuEncadrant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuEncadrant.Designer.cs">
       <DependentUpon>MenuEncadrant.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\Loisant\MenuLoisant.cs">
+    <Compile Include="WinForm\FormLoisant\MenuLoisant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinForm\Loisant\MenuLoisant.Designer.cs">
+    <Compile Include="WinForm\FormLoisant\MenuLoisant.Designer.cs">
       <DependentUpon>MenuLoisant.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\MenuAnimationListe.cs">
@@ -85,10 +91,13 @@
     <Compile Include="Modele\BDDInteraction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="WinForm\Encadrant\MenuEncadrant.resx">
+    <EmbeddedResource Include="WinForm\FormEncadrant\MenuAnimationAdd.resx">
+      <DependentUpon>MenuAnimationAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEncadrant\MenuEncadrant.resx">
       <DependentUpon>MenuEncadrant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\Loisant\MenuLoisant.resx">
+    <EmbeddedResource Include="WinForm\FormLoisant\MenuLoisant.resx">
       <DependentUpon>MenuLoisant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\MenuAnimationListe.resx">

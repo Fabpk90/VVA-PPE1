@@ -38,6 +38,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblNom = new System.Windows.Forms.Label();
             this.lblDuree = new System.Windows.Forms.Label();
+            this.btnAddMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBAnim
@@ -131,11 +132,22 @@
             this.lblDuree.Size = new System.Drawing.Size(0, 13);
             this.lblDuree.TabIndex = 9;
             // 
+            // btnAddMenu
+            // 
+            this.btnAddMenu.Location = new System.Drawing.Point(498, 489);
+            this.btnAddMenu.Name = "btnAddMenu";
+            this.btnAddMenu.Size = new System.Drawing.Size(75, 23);
+            this.btnAddMenu.TabIndex = 10;
+            this.btnAddMenu.Text = "Ajouter ";
+            this.btnAddMenu.UseVisualStyleBackColor = true;
+            this.btnAddMenu.Click += new System.EventHandler(this.btnAddMenu_Click);
+            // 
             // MenuAnimationListe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 524);
+            this.Controls.Add(this.btnAddMenu);
             this.Controls.Add(this.lblDuree);
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.label7);
@@ -166,5 +178,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Label lblDuree;
+        private System.Windows.Forms.Button btnAddMenu;
     }
 }

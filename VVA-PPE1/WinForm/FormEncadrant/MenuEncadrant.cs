@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using VVA_PPE1.Actor;
 using VVA_PPE1.Modele;
+using VVA_PPE1.Actor;
 
-namespace VVA_PPE1.WinForm
+namespace VVA_PPE1.WinForm.FormEncandrant
 {
     public partial class MenuEncadrant : Form
     {
-        private Encadrant enc;
+        private VVA_PPE1.Actor.Encadrant enc;
         private MenuPrincipal menuPrincipal;
 
-        public MenuEncadrant(Encadrant enc, MenuPrincipal menuPrincipal)
+        public MenuEncadrant(Actor.Encadrant enc, MenuPrincipal menuPrincipal)
         {
             InitializeComponent();
 

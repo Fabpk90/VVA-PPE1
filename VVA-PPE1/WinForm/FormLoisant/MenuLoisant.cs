@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VVA_PPE1.WinForm.Loisant
+namespace VVA_PPE1.WinForm.FormLoisant
 {
     public partial class MenuLoisant : Form
     {

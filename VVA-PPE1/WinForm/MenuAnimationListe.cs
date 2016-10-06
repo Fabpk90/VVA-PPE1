@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VVA_PPE1.Activity;
 using VVA_PPE1.Modele;
+using VVA_PPE1.WinForm.FormEncadrant;
+
 
 namespace VVA_PPE1.WinForm
 {
@@ -20,6 +22,11 @@ namespace VVA_PPE1.WinForm
             InitializeComponent();
 
             //TO DO: disable elements depending on isencadrant
+
+            if(!IsEncadrant)
+            {
+                btnAddMenu.Hide();
+            }
 
         }
 
@@ -36,6 +43,14 @@ namespace VVA_PPE1.WinForm
                 lblNom.Text = ((Animation)listBAnim.SelectedItem).Nom;
 
             }
+        }
+
+        private void btnAddMenu_Click(object sender, EventArgs e)
+        {
+            MenuAnimationAdd menuAdd = new MenuAnimationAdd(this);
+
+            menuAdd.Show();
+            this.Hide();
         }
     }
 }

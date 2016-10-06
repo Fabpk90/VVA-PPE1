@@ -15,7 +15,7 @@ namespace VVA_PPE1.Activity
 
     class Animation
     {
-        private string code;
+        private string codeAnim;
 
         private string nom;
 
@@ -154,11 +154,50 @@ namespace VVA_PPE1.Activity
             }
         }
 
+        public string Code
+        {
+            get
+            {
+                return codeAnim;
+            }
+
+            set
+            {
+                codeAnim = value;
+            }
+        }
+
+        internal Animation_Type AnimType
+        {
+            get
+            {
+                return animType;
+            }
+
+            set
+            {
+                animType = value;
+            }
+        }
+
+        internal EdiffAnim Difficulte
+        {
+            get
+            {
+                return difficulte;
+            }
+
+            set
+            {
+                difficulte = value;
+            }
+        }
+
         public Animation() { }
 
         public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, string commentaire, EdiffAnim difficulte)
         {
-            this.code = code;
+            this.codeAnim = code;
 
             this.nom = nom;
 
@@ -179,7 +218,7 @@ namespace VVA_PPE1.Activity
         }
 
         public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, 
-            string commentaire, EdiffAnim difficulte, int codeAnim, string nomAnim) 
+            string commentaire, EdiffAnim difficulte, string codeAnim, string nomAnim) 
             : this(code, nom, dtCreation, dtValidite, limiteAge, tarif, nbPlace, desc, commentaire, difficulte)
         {
             animType = new Animation_Type(codeAnim, nomAnim);

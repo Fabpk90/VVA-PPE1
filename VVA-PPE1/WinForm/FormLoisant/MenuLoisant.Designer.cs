@@ -1,4 +1,4 @@
-﻿namespace VVA_PPE1.WinForm.Loisant
+﻿namespace VVA_PPE1.WinForm.FormLoisant
 {
     partial class MenuLoisant
     {

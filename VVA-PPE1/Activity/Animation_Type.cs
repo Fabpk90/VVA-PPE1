@@ -8,10 +8,36 @@ namespace VVA_PPE1.Activity
 {
     class Animation_Type
     {
-        private int code;
+        private string code;
         private string nom;
 
-        public Animation_Type(int code, string nom)
+        public string Code
+        {
+            get
+            {
+                return code;
+            }
+
+            set
+            {
+                code = value;
+            }
+        }
+
+        public string Nom
+        {
+            get
+            {
+                return nom;
+            }
+
+            set
+            {
+                nom = value;
+            }
+        }
+
+        public Animation_Type(string code, string nom)
         {
             this.code = code;
             this.nom = nom;
@@ -19,7 +45,12 @@ namespace VVA_PPE1.Activity
 
         public Animation_Type()
         {
-            code = -1;
+            code = "";
+        }
+
+        public override string ToString()
+        {
+            return code;
         }
     }
 }

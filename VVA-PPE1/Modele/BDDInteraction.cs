@@ -78,7 +78,7 @@ namespace VVA_PPE1.Modele
 
         public static List<Animation> getAnimations()
         {
-            string query = "SELECT * FROM ANIMATION";
+            string query = "SELECT * FROM ANIMATION AS A, TYPE_ANIM AS T WHERE A.CODETYPEANIM = T.CODETYPEANIM";
 
             cmd.CommandText = query;
 
@@ -88,21 +88,92 @@ namespace VVA_PPE1.Modele
             List<Animation> listAnim = new List<Animation>();
 
             Animation anim = new Animation();
+            Animation_Type animType = new Animation_Type();
      
             while (rdr.Read())
             {
+
+                System.Diagnostics.Debug.WriteLine("");
+
+                anim.Code = rdr.GetString("CODEANIM");
                 anim.Nom = rdr.GetString("NOMANIM");
 
                 anim.DtCreation = DateTime.Parse(rdr.GetString("DATECREATIONANIM"));
                 anim.DtValidite = DateTime.Parse(rdr.GetString("DATEVALIDITEANIM"));
 
+                anim.Duree = rdr.GetUInt32("DUREEANIM");
+                anim.LimiteAge = rdr.GetInt32("LIMITEAGE");
+                anim.Tarif = rdr.GetFloat("TARIFANIM");
+
+                anim.NbPlace = rdr.GetInt32("NBREPLACEANIM");             
+
                 anim.Desc = rdr.GetString("DESCRIPTANIM");
                 anim.Commentaire = rdr.GetString("COMMENTANIM");
+
+                anim.Difficulte = (EdiffAnim)rdr.GetInt32("DIFFICULTEANIM");
+
+                animType.Code = rdr.GetString("CODETYPEANIM");
+                animType.Nom = rdr.GetString("NOMTYPEANIM");
 
                 listAnim.Add(anim);
             }
 
+            rdr.Close();
+
             return listAnim;
+        }
+
+        public static List<Animation_Type> getAnimType()
+        {
+            string query = "SELECT * FROM TYPE_ANIM";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+
+            List<Animation_Type> listAnimType = new List<Animation_Type>();
+
+            Animation_Type animType = new Animation_Type();
+
+            while (rdr.Read())
+            {
+                animType.Code = rdr.GetString("CODETYPEANIM");
+                animType.Nom = rdr.GetString("NOMTYPEANIM");
+                
+                listAnimType.Add(animType);
+            }
+
+            rdr.Close();
+
+            return listAnimType;
+        }
+
+        public static bool addAnimation(Animation anim)
+        {
+            string query = "INSERT INTO ANIMATION(CODEANIM, CODETYPEANIM, NOMANIM, DATECREATIONANIM, DATEVALIDITEANIM"
+                +", DUREEANIM, LIMITEAGE, TARIFANIM, NBREPLACEANIM, DESCRIPTANIM, COMMENTANIM, DIFFICULTEANIM) "
+                + "VALUES('"+anim.Code+ "', '" + anim.AnimType.Code + "','" + anim.Nom + "','" + anim.DtCreation.ToString("yyyy-MM-dd HH:mm:ss.fff") +
+                "', '" + anim.DtValidite.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', " + anim.Duree.ToString().Replace(",", ".") + ", " + anim.LimiteAge + ", " + anim.Tarif.ToString().Replace(",", ".") +
+                ", " + anim.NbPlace + ", '" + anim.Desc + "', '" + anim.Commentaire + "', " + (int) anim.Difficulte + ")";
+
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? true : false;       
+        }
+
+        public static bool isAnimationExists(Animation anim)
+        {
+            string query = "SELECT CODEANIM FROM ANIMATION WHERE CODEANIM = '" + anim.Code + "'";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            bool Exists = rdr.Read();
+            rdr.Close();
+
+            return Exists ? true : false;
         }
     }
 }

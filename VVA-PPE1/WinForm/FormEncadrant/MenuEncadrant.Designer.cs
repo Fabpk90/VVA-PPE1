@@ -1,4 +1,4 @@
-﻿namespace VVA_PPE1.WinForm
+﻿namespace VVA_PPE1.WinForm.FormEncandrant
 {
     partial class MenuEncadrant
     {

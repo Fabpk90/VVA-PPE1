@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using VVA_PPE1.Actor;
 using VVA_PPE1.Modele;
 using VVA_PPE1.WinForm;
+using VVA_PPE1.WinForm.FormEncandrant;
 
 namespace VVA_PPE1
 {
@@ -38,9 +39,7 @@ namespace VVA_PPE1
             {
                 if(cbEncadrant.Checked)
                 {
-                    Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text);
-
-                    MessageBox.Show(encadrant.ToString());
+                    Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text);                 
 
                     MenuEncadrant menu = new MenuEncadrant(encadrant, this);
 
