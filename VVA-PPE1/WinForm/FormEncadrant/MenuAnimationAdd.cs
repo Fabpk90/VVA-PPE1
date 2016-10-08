@@ -81,7 +81,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
             }
             else // if he does
             {
-                if(BDDInteraction.modifyAnimation(selectedAnim, anim))
+                if(BDDInteraction.modifyAnimation(anim))
                 {
                     MessageBox.Show("Animation modifiée");
                 }

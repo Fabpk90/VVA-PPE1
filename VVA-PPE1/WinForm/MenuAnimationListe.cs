@@ -33,6 +33,12 @@ namespace VVA_PPE1.WinForm
         private void MenuAnimationListe_Load(object sender, EventArgs e)
         {                    
             listBAnim.Items.AddRange(BDDInteraction.getAnimations().ToArray());
+
+            //if ther is some elements, set the first selected
+            if(listBAnim.Items.Count != 0)
+            {
+                listBAnim.SelectedIndex = 0;
+            }
         }
 
         private void listBAnim_SelectedIndexChanged(object sender, EventArgs e)

@@ -132,6 +132,8 @@ namespace VVA_PPE1.Modele
 
             cmd.CommandText = query;
 
+            rdr.Close();
+
             rdr = cmd.ExecuteReader();
 
 
@@ -179,12 +181,18 @@ namespace VVA_PPE1.Modele
             return Exists ? true : false;
         }
 
-        public static bool modifyAnimation(Animation oldAnim, Animation newAnim)
+        public static bool modifyAnimation(Animation newAnim)
         {
             string query = "UPDATE ANIMATION"
-               + " SET ";
+               + " SET NOMANIM = '" + newAnim.Nom + "' , DATECREATIONANIM = '" + newAnim.DtCreation.ToString("yyyy-MM-dd HH:mm:ss.fff")+"'"
+                + ", DATEVALIDITEANIM = '" + newAnim.DtValidite.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'"
+                + " , DUREEANIM = " + newAnim.Duree + " , LIMITEAGE = " + newAnim.LimiteAge + " , TARIFANIM = " + newAnim.Tarif +
+                " , NBREPLACEANIM = " + newAnim.NbPlace + " , DESCRIPTANIM = '" + newAnim.Desc + "', COMMENTANIM = '" + newAnim.Commentaire + "', DIFFICULTEANIM = " + (int)newAnim.Difficulte +
+                " WHERE CODEANIM = '" + newAnim.Code + "'";
 
-            return true;
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? true : false;
         }
     }
 }
