@@ -40,17 +40,62 @@ namespace VVA_PPE1.WinForm
             //si l'utilisateur est vraiment en train de clicker dessus
             if(listBAnim.SelectedIndex != -1)
             {
-                lblNom.Text = ((Animation)listBAnim.SelectedItem).Nom;
+                Animation anim = ((Animation)listBAnim.SelectedItem);
 
+                lblNom.Text = anim.Nom;
+                lblNomType.Text = anim.AnimType.Nom;
+
+                lblCom.Text = anim.Commentaire;
+                lblDesc.Text = anim.Desc;
+
+                lblDtCrea.Text = anim.DtCreation.ToShortDateString();
+                lblDtVal.Text = anim.DtValidite.ToShortDateString();
+
+                lblDuree.Text = "" + anim.Duree;
+                lblLimitAge.Text = "" + anim.LimiteAge + " ans";
+
+                lblNbPlace.Text = "" + anim.NbPlace;
+
+                lblTarif.Text = "" + anim.Tarif;
+
+                lblCom.Text = anim.Commentaire;
+                                
             }
         }
 
         private void btnAddMenu_Click(object sender, EventArgs e)
         {
-            MenuAnimationAdd menuAdd = new MenuAnimationAdd(this);
+            //if there is anim types, open the add menu 
+            if(BDDInteraction.getAnimType().Count != 0)
+            {
+                MenuAnimationAdd menuAdd = new MenuAnimationAdd(this);
 
-            menuAdd.Show();
-            this.Hide();
+                menuAdd.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Ajouter un ype d'animation d'abord");
+            }
+
+            
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            //if the user has selected an animation
+            if(listBAnim.SelectedIndex != -1)
+            {
+               
+                MenuAnimationAdd menuAdd = new MenuAnimationAdd(this, (Animation) listBAnim.SelectedItem);
+
+                menuAdd.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Selectionner une animation avant");
+            }
         }
     }
 }

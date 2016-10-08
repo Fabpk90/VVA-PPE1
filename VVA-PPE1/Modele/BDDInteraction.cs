@@ -91,9 +91,7 @@ namespace VVA_PPE1.Modele
             Animation_Type animType = new Animation_Type();
      
             while (rdr.Read())
-            {
-
-                System.Diagnostics.Debug.WriteLine("");
+            {              
 
                 anim.Code = rdr.GetString("CODEANIM");
                 anim.Nom = rdr.GetString("NOMANIM");
@@ -115,7 +113,12 @@ namespace VVA_PPE1.Modele
                 animType.Code = rdr.GetString("CODETYPEANIM");
                 animType.Nom = rdr.GetString("NOMTYPEANIM");
 
+                anim.AnimType = animType;             
+
                 listAnim.Add(anim);
+
+                anim = new Animation();
+                animType = new Animation_Type();
             }
 
             rdr.Close();
@@ -174,6 +177,14 @@ namespace VVA_PPE1.Modele
             rdr.Close();
 
             return Exists ? true : false;
+        }
+
+        public static bool modifyAnimation(Animation oldAnim, Animation newAnim)
+        {
+            string query = "UPDATE ANIMATION"
+               + " SET ";
+
+            return true;
         }
     }
 }

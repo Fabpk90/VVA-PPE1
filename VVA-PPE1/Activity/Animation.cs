@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace VVA_PPE1.Activity
 {
-    enum EdiffAnim
+   public enum EdiffAnim
     {
         FACILE = 0,
         NORMAL,
         DIFFICILE
     }
 
-    class Animation
+  public  class Animation
     {
         private string codeAnim;
 
@@ -228,6 +228,15 @@ namespace VVA_PPE1.Activity
         public override string ToString()
         {
             return nom;
+        }
+
+        public string getDescription()
+        {
+            string desc = "";
+
+            desc += "";
+
+            return desc;
         }
     }
 }

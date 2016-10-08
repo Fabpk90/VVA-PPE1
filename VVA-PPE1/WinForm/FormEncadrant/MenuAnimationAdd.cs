@@ -15,12 +15,13 @@ namespace VVA_PPE1.WinForm.FormEncadrant
     public partial class MenuAnimationAdd : Form
     {
         private MenuAnimationListe menuAnimationListe;
+        private Animation selectedAnim = null;
 
         public MenuAnimationAdd(MenuAnimationListe menuAnimationListe)
         {
             this.menuAnimationListe = menuAnimationListe;
 
-            InitializeComponent();
+            InitializeComponent();         
 
             cbTypeAnim.Items.AddRange(BDDInteraction.getAnimType().ToArray());
             
@@ -30,6 +31,24 @@ namespace VVA_PPE1.WinForm.FormEncadrant
             }
         }
 
+        public MenuAnimationAdd(MenuAnimationListe menuAnimationListe, Animation selectedItem) : this(menuAnimationListe)
+        {
+            this.selectedAnim = selectedItem;
+
+            btnAdd.Text = "Modifier l'animation";
+
+            tbCodeAnim.Text = selectedAnim.Code;
+            tbCodeAnim.Enabled = false;     
+
+            tbNomAnim.Text = selectedAnim.Nom;
+
+            cbDifficulteAnim.SelectedIndex = (int) selectedAnim.Difficulte;
+
+            cbTypeAnim.SelectedText = selectedAnim.AnimType.Nom;
+            cbTypeAnim.Enabled = false;
+            
+        }
+
         private void MenuAnimationAdd_FormClosing(object sender, FormClosingEventArgs e)
         {
             menuAnimationListe.Show();
@@ -37,25 +56,47 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //creates the animation based on the form
+            Animation anim = new Animation(tbCodeAnim.Text, tbNomAnim.Text, DateTime.Now, dtValiditeAnim.Value, (int)numLimiteAge.Value, (float)numTarifAnim.Value
+                   , (int)numNbPlace.Value, rbDescAnim.Text, rbCommAnim.Text, (EdiffAnim)cbDifficulteAnim.SelectedIndex,
+                   ((Animation_Type)cbTypeAnim.SelectedItem).Code, ((Animation_Type)cbTypeAnim.SelectedItem).Nom);
 
+            //if the user is not modifying an animation
+            if (selectedAnim == null)
+            {            
 
-            Animation anim = new Animation(tbCodeAnim.Text, tbNomAnim.Text, DateTime.Now, dtValiditeAnim.Value, (int) numLimiteAge.Value, (float) numTarifAnim.Value
-                , (int) numNbPlace.Value, rbDescAnim.Text, rbCommAnim.Text, (EdiffAnim)cbDifficulteAnim.SelectedIndex, 
-                ((Animation_Type)cbTypeAnim.SelectedItem).Code, ((Animation_Type)cbTypeAnim.SelectedItem).Nom);
+                anim.AnimType = (Animation_Type)cbTypeAnim.SelectedItem;
 
-            anim.AnimType = (Animation_Type) cbTypeAnim.SelectedItem;
-
-            if(!BDDInteraction.isAnimationExists(anim))
-            {
-                if (BDDInteraction.addAnimation(anim))
+                if (!BDDInteraction.isAnimationExists(anim))
                 {
-                    MessageBox.Show("Animation ajoutée corréctement");
+                    if (BDDInteraction.addAnimation(anim))
+                    {
+                        MessageBox.Show("Animation ajoutée corréctement");
+                    }
+                    else
+                        MessageBox.Show("Erreur de requête!");
                 }
                 else
-                    MessageBox.Show("Erreur de requête!");
+                    MessageBox.Show("L'animation existe déjà!"); 
             }
-            else
-                MessageBox.Show("L'animation existe déjà!");
+            else // if he does
+            {
+                if(BDDInteraction.modifyAnimation(selectedAnim, anim))
+                {
+                    MessageBox.Show("Animation modifiée");
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de la modification de l'animation");
+                }
+            }
+        }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            menuAnimationListe.Show();
+
+            this.Close();
 
         }
     }

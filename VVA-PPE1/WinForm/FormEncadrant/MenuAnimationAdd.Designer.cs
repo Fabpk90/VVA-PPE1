@@ -273,6 +273,7 @@
             this.btnRetour.TabIndex = 28;
             this.btnRetour.Text = "Retour";
             this.btnRetour.UseVisualStyleBackColor = true;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // numDureeAnim
             // 
