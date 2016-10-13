@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity\Activite.cs" />
+    <Compile Include="Activity\Activite_Etat.cs" />
     <Compile Include="Activity\Animation.cs" />
     <Compile Include="Activity\Animation_Type.cs" />
     <Compile Include="Activity\Inscription.cs" />
@@ -58,6 +59,12 @@
     <Compile Include="Actor\Inscrit.cs" />
     <Compile Include="Actor\Loisant.cs" />
     <Compile Include="Actor\Profil.cs" />
+    <Compile Include="WinForm\FormEncadrant\MenuActiviteAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuActiviteAdd.Designer.cs">
+      <DependentUpon>MenuActiviteAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\FormEncadrant\MenuAnimationAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +83,12 @@
     <Compile Include="WinForm\FormLoisant\MenuLoisant.Designer.cs">
       <DependentUpon>MenuLoisant.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\MenuActiviteListe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\MenuActiviteListe.Designer.cs">
+      <DependentUpon>MenuActiviteListe.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\MenuAnimationListe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +104,9 @@
     <Compile Include="Modele\BDDInteraction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="WinForm\FormEncadrant\MenuActiviteAdd.resx">
+      <DependentUpon>MenuActiviteAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEncadrant\MenuAnimationAdd.resx">
       <DependentUpon>MenuAnimationAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormLoisant\MenuLoisant.resx">
       <DependentUpon>MenuLoisant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\MenuActiviteListe.resx">
+      <DependentUpon>MenuActiviteListe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\MenuAnimationListe.resx">
       <DependentUpon>MenuAnimationListe.cs</DependentUpon>

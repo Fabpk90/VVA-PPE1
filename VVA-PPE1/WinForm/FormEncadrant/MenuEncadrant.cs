@@ -7,10 +7,10 @@ namespace VVA_PPE1.WinForm.FormEncandrant
 {
     public partial class MenuEncadrant : Form
     {
-        private VVA_PPE1.Actor.Encadrant enc;
+        private Encadrant enc;
         private MenuPrincipal menuPrincipal;
 
-        public MenuEncadrant(Actor.Encadrant enc, MenuPrincipal menuPrincipal)
+        public MenuEncadrant(Encadrant enc, MenuPrincipal menuPrincipal)
         {
             InitializeComponent();
 
@@ -20,7 +20,7 @@ namespace VVA_PPE1.WinForm.FormEncandrant
 
         private void btnListeAnim_Click(object sender, EventArgs e)
         {
-            MenuAnimationListe menu = new MenuAnimationListe(true);
+            MenuAnimationListe menu = new MenuAnimationListe(true, enc);
 
             menu.Show();
         }
@@ -29,6 +29,13 @@ namespace VVA_PPE1.WinForm.FormEncandrant
         {
             BDDInteraction.Deconnection();
             menuPrincipal.Close();
+        }
+
+        private void btnListeActivite_Click(object sender, EventArgs e)
+        {
+            MenuActiviteListe menu = new MenuActiviteListe(true, enc);
+
+            menu.Show();
         }
     }
 }

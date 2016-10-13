@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 using System.Windows.Forms;
 using VVA_PPE1.Activity;
+using VVA_PPE1.Actor;
 using VVA_PPE1.Modele;
 using VVA_PPE1.WinForm.FormEncadrant;
 
@@ -17,6 +18,8 @@ namespace VVA_PPE1.WinForm
 {
     public partial class MenuAnimationListe : Form
     {
+        private Encadrant enc;
+
         public MenuAnimationListe(bool IsEncadrant)
         {
             InitializeComponent();
@@ -28,6 +31,11 @@ namespace VVA_PPE1.WinForm
                 btnAddMenu.Hide();
             }
 
+        }
+
+        public MenuAnimationListe(bool IsEncadrant, Encadrant enc) : this(IsEncadrant)
+        {
+            this.enc = enc;
         }
 
         private void MenuAnimationListe_Load(object sender, EventArgs e)
@@ -81,7 +89,7 @@ namespace VVA_PPE1.WinForm
             }
             else
             {
-                MessageBox.Show("Ajouter un ype d'animation d'abord");
+                MessageBox.Show("Ajouter un type d'animation d'abord");
             }
 
             

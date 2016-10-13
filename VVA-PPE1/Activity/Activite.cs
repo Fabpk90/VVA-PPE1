@@ -8,8 +8,12 @@ using VVA_PPE1.Actor;
 namespace VVA_PPE1.Activity
 {
     
-    class Activite
+   public class Activite
     {
+        private string code;
+
+        private int noEncadrant;
+
         private DateTime date;
         private DateTime hrRDV;
 
@@ -21,6 +25,8 @@ namespace VVA_PPE1.Activity
         private DateTime dateAnnulation;
 
         private string objectif;
+
+        private Activite_Etat etat;
 
         public DateTime Date
         {
@@ -113,9 +119,53 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        public Activite(DateTime date, DateTime hrRDV, float prix, DateTime hrDebut, DateTime hrFin, DateTime dateAnnulation, string objectif)
+        public string Code
         {
+            get
+            {
+                return code;
+            }
+
+            set
+            {
+                code = value;
+            }
+        }
+
+        public int NoEncadrant
+        {
+            get
+            {
+                return noEncadrant;
+            }
+
+            set
+            {
+                noEncadrant = value;
+            }
+        }
+
+        internal Activite_Etat Etat
+        {
+            get
+            {
+                return etat;
+            }
+
+            set
+            {
+                etat = value;
+            }
+        }
+
+        public Activite(string code, DateTime date, int noEncadrant, DateTime hrRDV, float prix, DateTime hrDebut, DateTime hrFin, DateTime dateAnnulation, string objectif)
+        {
+
+            this.code = code;
             this.date = date;
+
+            this.noEncadrant = noEncadrant;
+
             this.hrRDV = hrRDV;
 
             this.prix = prix;
@@ -126,6 +176,12 @@ namespace VVA_PPE1.Activity
             this.dateAnnulation = dateAnnulation;
 
             this.objectif = objectif;
+
+            etat = new Activite_Etat();
+        }
+
+        public Activite()
+        {
         }
     }
 }

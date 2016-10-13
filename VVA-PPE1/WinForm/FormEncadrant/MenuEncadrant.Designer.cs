@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnListeAnim = new System.Windows.Forms.Button();
+            this.btnListeActivite = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnListeAnim
@@ -41,11 +42,22 @@
             this.btnListeAnim.UseVisualStyleBackColor = true;
             this.btnListeAnim.Click += new System.EventHandler(this.btnListeAnim_Click);
             // 
+            // btnListeActivite
+            // 
+            this.btnListeActivite.Location = new System.Drawing.Point(77, 281);
+            this.btnListeActivite.Name = "btnListeActivite";
+            this.btnListeActivite.Size = new System.Drawing.Size(173, 23);
+            this.btnListeActivite.TabIndex = 1;
+            this.btnListeActivite.Text = "Voir la liste des activités";
+            this.btnListeActivite.UseVisualStyleBackColor = true;
+            this.btnListeActivite.Click += new System.EventHandler(this.btnListeActivite_Click);
+            // 
             // MenuEncadrant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 562);
+            this.Controls.Add(this.btnListeActivite);
             this.Controls.Add(this.btnListeAnim);
             this.Name = "MenuEncadrant";
             this.Text = "MenuEncadrant";
@@ -57,5 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnListeAnim;
+        private System.Windows.Forms.Button btnListeActivite;
     }
 }

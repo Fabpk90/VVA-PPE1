@@ -143,6 +143,8 @@ namespace VVA_PPE1.Modele
 
             while (rdr.Read())
             {
+                animType = new Animation_Type();
+
                 animType.Code = rdr.GetString("CODETYPEANIM");
                 animType.Nom = rdr.GetString("NOMTYPEANIM");
                 
@@ -194,5 +196,118 @@ namespace VVA_PPE1.Modele
 
             return cmd.ExecuteNonQuery() != 0 ? true : false;
         }
+
+        public static List<Activite> getActivites()
+        {
+            string query = "SELECT * FROM ACTIVITE AS A, ETAT_ACT AS E"
+              + " WHERE A.CODEETATACT = E.CODEETATACT";
+
+            cmd.CommandText = query;
+
+            rdr.Close();
+
+            rdr = cmd.ExecuteReader();
+
+
+            List<Activite> listAct = new List<Activite>();
+
+            Activite act = new Activite();
+
+            while (rdr.Read())
+            {
+                act = new Activite();
+
+                act.Code = rdr.GetString("CODEANIM");
+                act.Date = rdr.GetDateTime("DATEACT");
+
+                act.NoEncadrant = rdr.GetInt32("NOENCADRANT");
+                act.HrRDV = rdr.GetDateTime("HRRDVACT");
+                act.Prix = rdr.GetFloat("PRIXACT");
+
+                act.HrDebut = rdr.GetDateTime("HRDEBUTACT");
+                act.HrFin = rdr.GetDateTime("HRFINACT");
+
+                act.DateAnnulation = rdr.GetDateTime("DATEANNULATIONACT");
+
+                act.Objectif = rdr.GetString("OBJECTIFACT");
+
+                act.Etat = new Activite_Etat(rdr.GetString("CODEETATACT"), rdr.GetString("NOMETATACT"));
+
+                listAct.Add(act);
+            }
+
+            rdr.Close();
+
+            return listAct;
+        }
+
+        public static List<Activite_Etat> getEtatActivite()
+        {
+            string query = "SELECT * FROM ETAT_ACT";
+            
+
+            cmd.CommandText = query;
+
+            rdr.Close();
+
+            rdr = cmd.ExecuteReader();
+
+
+            List<Activite_Etat> listAct = new List<Activite_Etat>();
+
+            Activite_Etat act_etat = new Activite_Etat();
+
+            while (rdr.Read())
+            {
+                act_etat = new Activite_Etat();
+
+                act_etat.Code = rdr.GetString("CODEETATACT");
+                act_etat.Nom = rdr.GetString("NOMETATACT");
+
+                listAct.Add(act_etat);
+            }
+
+
+
+            rdr.Close();
+
+            return listAct;
+        }
+
+        public static bool isActiviteExist(Activite act)
+        {
+            string query = "SELECT CODEANIM FROM ANIMATION WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '"+ act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")+"'";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            bool Exists = rdr.Read();
+            rdr.Close();
+
+            return Exists ? true : false;
+        }
+
+        public static bool addActivite(Activite act)
+        {
+            string query = "INSERT INTO ACTIVITE(CODEANIM, DATEACT, NOENCADRANT, CODEETATACT, HRRDVACT, PRIXACT, HRDEBUTACT, HRFINACT, OBJECTIFACT)"
+              + "VALUES('" + act.Code + "', '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', " + act.NoEncadrant + ",'" + act.Etat.Code + "', '" + act.HrRDV.ToString("yyyy-MM-dd HH:mm:ss.fff") + "',"
+             + " " + act.Prix + ", '" + act.HrDebut.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + act.HrFin.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + act.Objectif + "')";
+
+
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? true : false;
+        }
+
+        public static bool modifyActivite()
+        {
+            string query = "";
+
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? true : false;
+        }
+            
     }
 }
