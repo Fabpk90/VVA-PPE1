@@ -15,12 +15,12 @@ namespace VVA_PPE1.Activity
         private int noEncadrant;
 
         private DateTime date;
-        private DateTime hrRDV;
+        private TimeSpan hrRDV;
 
         private float prix;
 
-        private DateTime hrDebut;
-        private DateTime hrFin;
+        private TimeSpan hrDebut;
+        private TimeSpan hrFin;
 
         private DateTime dateAnnulation;
 
@@ -41,18 +41,7 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        public DateTime HrRDV
-        {
-            get
-            {
-                return hrRDV;
-            }
-
-            set
-            {
-                hrRDV = value;
-            }
-        }
+        
 
         public float Prix
         {
@@ -67,31 +56,9 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        public DateTime HrDebut
-        {
-            get
-            {
-                return hrDebut;
-            }
+       
 
-            set
-            {
-                hrDebut = value;
-            }
-        }
-
-        public DateTime HrFin
-        {
-            get
-            {
-                return hrFin;
-            }
-
-            set
-            {
-                hrFin = value;
-            }
-        }
+       
 
         public DateTime DateAnnulation
         {
@@ -158,7 +125,46 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        public Activite(string code, DateTime date, int noEncadrant, DateTime hrRDV, float prix, DateTime hrDebut, DateTime hrFin, DateTime dateAnnulation, string objectif)
+        public TimeSpan HrRDV
+        {
+            get
+            {
+                return hrRDV;
+            }
+
+            set
+            {
+                hrRDV = value;
+            }
+        }
+
+        public TimeSpan HrDebut
+        {
+            get
+            {
+                return hrDebut;
+            }
+
+            set
+            {
+                hrDebut = value;
+            }
+        }
+
+        public TimeSpan HrFin
+        {
+            get
+            {
+                return hrFin;
+            }
+
+            set
+            {
+                hrFin = value;
+            }
+        }
+
+        public Activite(string code, DateTime date, int noEncadrant, TimeSpan hrRDV, float prix, TimeSpan hrDebut, TimeSpan hrFin, DateTime dateAnnulation, string objectif)
         {
 
             this.code = code;
@@ -182,6 +188,11 @@ namespace VVA_PPE1.Activity
 
         public Activite()
         {
+        }
+
+        public override string ToString()
+        {
+            return code + " " + date.ToShortDateString();
         }
     }
 }

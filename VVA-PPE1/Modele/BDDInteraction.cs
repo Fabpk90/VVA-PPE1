@@ -221,15 +221,18 @@ namespace VVA_PPE1.Modele
                 act.Date = rdr.GetDateTime("DATEACT");
 
                 act.NoEncadrant = rdr.GetInt32("NOENCADRANT");
-                act.HrRDV = rdr.GetDateTime("HRRDVACT");
+                act.HrRDV = (TimeSpan) rdr["HRRDVACT"];
                 act.Prix = rdr.GetFloat("PRIXACT");
 
-                act.HrDebut = rdr.GetDateTime("HRDEBUTACT");
-                act.HrFin = rdr.GetDateTime("HRFINACT");
+                act.HrDebut = (TimeSpan)rdr["HRDEBUTACT"];
+                act.HrFin = (TimeSpan)rdr["HRFINACT"];
 
-                act.DateAnnulation = rdr.GetDateTime("DATEANNULATIONACT");
+                if (!rdr.IsDBNull(8))// Date annulation is null?
+                    act.DateAnnulation = rdr.GetDateTime("DATEANNULATIONACT");
+                else
+                    act.DateAnnulation = new DateTime();
 
-                act.Objectif = rdr.GetString("OBJECTIFACT");
+               act.Objectif = rdr.GetString("OBJECTIFACT");
 
                 act.Etat = new Activite_Etat(rdr.GetString("CODEETATACT"), rdr.GetString("NOMETATACT"));
 
@@ -276,7 +279,7 @@ namespace VVA_PPE1.Modele
 
         public static bool isActiviteExist(Activite act)
         {
-            string query = "SELECT CODEANIM FROM ANIMATION WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '"+ act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")+"'";
+            string query = "SELECT CODEANIM FROM ACTIVITE WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '"+ act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")+"'";
 
             cmd.CommandText = query;
 
@@ -291,8 +294,8 @@ namespace VVA_PPE1.Modele
         public static bool addActivite(Activite act)
         {
             string query = "INSERT INTO ACTIVITE(CODEANIM, DATEACT, NOENCADRANT, CODEETATACT, HRRDVACT, PRIXACT, HRDEBUTACT, HRFINACT, OBJECTIFACT)"
-              + "VALUES('" + act.Code + "', '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', " + act.NoEncadrant + ",'" + act.Etat.Code + "', '" + act.HrRDV.ToString("yyyy-MM-dd HH:mm:ss.fff") + "',"
-             + " " + act.Prix + ", '" + act.HrDebut.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + act.HrFin.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + act.Objectif + "')";
+              + "VALUES('" + act.Code + "', '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', " + act.NoEncadrant + ",'" + act.Etat.Code + "', '" + act.HrRDV + "',"
+             + " " + act.Prix.ToString().Replace(',', '.') + ", '" + act.HrDebut + "', '" + act.HrFin + "', '" + act.Objectif + "')";
 
 
             cmd.CommandText = query;

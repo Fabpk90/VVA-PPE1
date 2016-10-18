@@ -31,6 +31,13 @@ namespace VVA_PPE1.WinForm.FormEncadrant
             cbEtat.Items.AddRange(BDDInteraction.getEtatActivite().ToArray());
 
             
+
+            foreach(Animation anim in BDDInteraction.getAnimations())
+            {
+                cbCodeAnim.Items.Add(anim.Code);
+            }
+
+            cbCodeAnim.Items.AddRange(BDDInteraction.getAnimations().ToArray());
             
         }
 
@@ -42,28 +49,39 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Activite act = new Activite();
+            if(cbCodeAnim.SelectedItem != null && cbEtat.SelectedItem != null)
+            {
+                Activite act = new Activite();
 
-            act.Code = tbCodeAct.Text;
-            act.Date = dtAct.Value;
+                act.Code = cbCodeAnim.SelectedItem.ToString();             
+                act.Date = dtAct.Value;
 
-            act.NoEncadrant = menuActiviteListe.getEncadrant().Numero;
+                act.NoEncadrant = menuActiviteListe.getEncadrant().Numero;
 
-            act.Etat = (Activite_Etat)cbEtat.SelectedItem;
+                act.Etat = (Activite_Etat)cbEtat.SelectedItem;
 
-            act.HrRDV = dtRDV.Value;
+                act.HrRDV = dtRDV.Value.TimeOfDay;
 
-            act.Prix = (float) numPrix.Value;
+                act.Prix = (float)numPrix.Value;
 
-            act.HrDebut = dtHrDebut.Value;
-            act.HrFin = dtHrFin.Value;
+                act.HrDebut = dtHrDebut.Value.TimeOfDay;
+                act.HrFin = dtHrFin.Value.TimeOfDay;
 
-            act.Objectif = rtObj.Text;
-
-            if (BDDInteraction.addActivite(act))
-                MessageBox.Show("Activité ajoutée");
+                act.Objectif = rtObj.Text;
+                if (!BDDInteraction.isActiviteExist(act))
+                {
+                    if (BDDInteraction.addActivite(act))
+                        MessageBox.Show("Activité ajoutée");
+                    else
+                        MessageBox.Show("Activité non ajoutée");
+                }
+                else
+                {
+                    MessageBox.Show("L'activité existe déjà");
+                }
+            }
             else
-                MessageBox.Show("Activité non ajoutée");
+                MessageBox.Show("Renseigner tout les champs");
         }
     }
 }

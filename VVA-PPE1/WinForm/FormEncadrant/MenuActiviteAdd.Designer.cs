@@ -36,7 +36,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tbCodeAct = new System.Windows.Forms.TextBox();
             this.rtObj = new System.Windows.Forms.RichTextBox();
             this.dtHrFin = new System.Windows.Forms.DateTimePicker();
             this.dtHrDebut = new System.Windows.Forms.DateTimePicker();
@@ -45,6 +44,7 @@
             this.cbEtat = new System.Windows.Forms.ComboBox();
             this.dtAct = new System.Windows.Forms.DateTimePicker();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.cbCodeAnim = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPrix)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +87,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 229);
+            this.label5.Location = new System.Drawing.Point(293, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 13);
             this.label5.TabIndex = 4;
@@ -96,7 +96,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 287);
+            this.label6.Location = new System.Drawing.Point(293, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 5;
@@ -105,7 +105,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 341);
+            this.label7.Location = new System.Drawing.Point(293, 160);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 13);
             this.label7.TabIndex = 6;
@@ -114,32 +114,24 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 398);
+            this.label8.Location = new System.Drawing.Point(174, 230);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Objectif";
             // 
-            // tbCodeAct
-            // 
-            this.tbCodeAct.Location = new System.Drawing.Point(28, 30);
-            this.tbCodeAct.MaxLength = 8;
-            this.tbCodeAct.Name = "tbCodeAct";
-            this.tbCodeAct.Size = new System.Drawing.Size(63, 20);
-            this.tbCodeAct.TabIndex = 8;
-            // 
             // rtObj
             // 
-            this.rtObj.Location = new System.Drawing.Point(28, 414);
+            this.rtObj.Location = new System.Drawing.Point(28, 246);
             this.rtObj.Name = "rtObj";
-            this.rtObj.Size = new System.Drawing.Size(100, 66);
+            this.rtObj.Size = new System.Drawing.Size(368, 117);
             this.rtObj.TabIndex = 9;
             this.rtObj.Text = "";
             // 
             // dtHrFin
             // 
             this.dtHrFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtHrFin.Location = new System.Drawing.Point(28, 358);
+            this.dtHrFin.Location = new System.Drawing.Point(296, 177);
             this.dtHrFin.Name = "dtHrFin";
             this.dtHrFin.Size = new System.Drawing.Size(100, 20);
             this.dtHrFin.TabIndex = 10;
@@ -147,7 +139,7 @@
             // dtHrDebut
             // 
             this.dtHrDebut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtHrDebut.Location = new System.Drawing.Point(28, 304);
+            this.dtHrDebut.Location = new System.Drawing.Point(296, 123);
             this.dtHrDebut.Name = "dtHrDebut";
             this.dtHrDebut.Size = new System.Drawing.Size(100, 20);
             this.dtHrDebut.TabIndex = 11;
@@ -160,7 +152,7 @@
             0,
             0,
             65536});
-            this.numPrix.Location = new System.Drawing.Point(28, 246);
+            this.numPrix.Location = new System.Drawing.Point(296, 54);
             this.numPrix.Maximum = new decimal(new int[] {
             400,
             0,
@@ -197,19 +189,29 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(335, 476);
+            this.btnAdd.Location = new System.Drawing.Point(131, 369);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 55);
+            this.btnAdd.Size = new System.Drawing.Size(140, 55);
             this.btnAdd.TabIndex = 16;
             this.btnAdd.Text = "Ajouter";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // cbCodeAnim
+            // 
+            this.cbCodeAnim.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCodeAnim.FormattingEnabled = true;
+            this.cbCodeAnim.Location = new System.Drawing.Point(28, 30);
+            this.cbCodeAnim.Name = "cbCodeAnim";
+            this.cbCodeAnim.Size = new System.Drawing.Size(61, 21);
+            this.cbCodeAnim.TabIndex = 17;
+            // 
             // MenuActiviteAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 557);
+            this.ClientSize = new System.Drawing.Size(423, 432);
+            this.Controls.Add(this.cbCodeAnim);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dtAct);
             this.Controls.Add(this.cbEtat);
@@ -218,7 +220,6 @@
             this.Controls.Add(this.dtHrDebut);
             this.Controls.Add(this.dtHrFin);
             this.Controls.Add(this.rtObj);
-            this.Controls.Add(this.tbCodeAct);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -245,7 +246,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tbCodeAct;
         private System.Windows.Forms.RichTextBox rtObj;
         private System.Windows.Forms.DateTimePicker dtHrFin;
         private System.Windows.Forms.DateTimePicker dtHrDebut;
@@ -254,5 +254,6 @@
         private System.Windows.Forms.ComboBox cbEtat;
         private System.Windows.Forms.DateTimePicker dtAct;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ComboBox cbCodeAnim;
     }
 }
