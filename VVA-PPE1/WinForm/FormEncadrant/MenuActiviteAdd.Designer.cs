@@ -133,6 +133,7 @@
             this.dtHrFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtHrFin.Location = new System.Drawing.Point(296, 177);
             this.dtHrFin.Name = "dtHrFin";
+            this.dtHrFin.ShowUpDown = true;
             this.dtHrFin.Size = new System.Drawing.Size(100, 20);
             this.dtHrFin.TabIndex = 10;
             // 
@@ -141,6 +142,7 @@
             this.dtHrDebut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtHrDebut.Location = new System.Drawing.Point(296, 123);
             this.dtHrDebut.Name = "dtHrDebut";
+            this.dtHrDebut.ShowUpDown = true;
             this.dtHrDebut.Size = new System.Drawing.Size(100, 20);
             this.dtHrDebut.TabIndex = 11;
             // 
@@ -168,6 +170,7 @@
             this.dtRDV.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtRDV.Location = new System.Drawing.Point(28, 187);
             this.dtRDV.Name = "dtRDV";
+            this.dtRDV.ShowUpDown = true;
             this.dtRDV.Size = new System.Drawing.Size(100, 20);
             this.dtRDV.TabIndex = 13;
             // 
@@ -189,7 +192,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(131, 369);
+            this.btnAdd.Location = new System.Drawing.Point(138, 365);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(140, 55);
             this.btnAdd.TabIndex = 16;

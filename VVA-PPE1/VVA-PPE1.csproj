@@ -77,6 +77,12 @@
     <Compile Include="WinForm\FormEncadrant\MenuEncadrant.Designer.cs">
       <DependentUpon>MenuEncadrant.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuPlanning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuPlanning.Designer.cs">
+      <DependentUpon>MenuPlanning.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\FormLoisant\MenuLoisant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEncadrant\MenuEncadrant.resx">
       <DependentUpon>MenuEncadrant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEncadrant\MenuPlanning.resx">
+      <DependentUpon>MenuPlanning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormLoisant\MenuLoisant.resx">
       <DependentUpon>MenuLoisant.cs</DependentUpon>

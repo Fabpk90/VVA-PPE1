@@ -72,6 +72,7 @@
             this.Controls.Add(this.label1);
             this.Name = "MenuLoisant";
             this.Text = "MenuLoisant";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuLoisant_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

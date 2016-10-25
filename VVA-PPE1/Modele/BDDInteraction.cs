@@ -38,42 +38,152 @@ namespace VVA_PPE1.Modele
         {
             string query = "SELECT * FROM ENCADRANT AS E, PROFIL AS P WHERE P.USER = '"+user+"' AND E.USER = P.USER AND P.MDP = '"+mdp+"'";
 
+                
+            return getEncadrant(query);
+          
+        }
+
+        public Encadrant getEncadrant(int noEnc)
+        {
+            string query = "SELECT * FROM ENCADRANT AS E, PROFIL AS P WHERE NOENCADRANT = "+noEnc;
+
+
+            return getEncadrant(query);
+        }
+
+        internal static Encadrant getEncadrant(string query)
+        {
+        cmd.CommandText = query;
+
+        rdr = cmd.ExecuteReader();
+
+        Encadrant enc = new Encadrant();
+
+            //check si il y a un résultat
+            if (rdr.Read())
+            {
+                enc = new Encadrant(rdr.GetInt32("NOENCADRANT"), rdr.GetString("NOMENCADRANT"), rdr.GetString("PRENOMENCADRANT"),
+                    rdr.GetString("ADRMAILENCADRANT"), rdr.GetString("ETATSERVICE"), DateTime.Parse(rdr.GetString("DATENAISENCADRANT"))
+                    , rdr.GetString("MDP"), DateTime.Parse(rdr.GetString("DATEINSPRO")), DateTime.Parse(rdr.GetString("DATEVALIDITE")));
+            }
+            rdr.Close();
+
+            return enc;
+
+        }
+        /// <summary>
+        /// Affecte les encadrants aux activités
+        /// </summary>
+        /// <param name="selectedAct"></param>
+        /// <param name="listEnc"></param>
+        /// <returns>0 OK -1 already planned -2 query problem</returns>
+        public static bool setPlanning(Activite selectedAct, List<Encadrant> listEnc)
+        {
+            string query = "";
+
+            
+
+            foreach (Encadrant enc in listEnc)
+            {
+                if (!checkEncPlanning(enc, selectedAct))
+                {
+                    query = "INSERT INTO PLANNING(NOENCADRANT, CODEANIM, DATEACT)"
+                    + "VALUES( " + enc.Numero + ", '" + selectedAct.Code + "', '" + selectedAct.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "') ";
+
+                    cmd.CommandText = query;
+
+                    if (cmd.ExecuteNonQuery() == 0)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Probléme de base de données");
+                        return false;
+                    }
+                        
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Encadrant " + enc.getDescription() + " \ndéjà affecté!");
+                    return false;
+                }
+            }
+
+            System.Windows.Forms.MessageBox.Show("Activité plannifiée");
+            return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enc"></param>
+        /// <param name="act"></param>
+        /// <returns>whether the Enc is affected on this act</returns>
+        public static bool checkEncPlanning(Encadrant enc, Activite act)
+        {
+            string query = "SELECT NOENCADRANT FROM PLANNING "
+               +" WHERE NOENCADRANT = "+enc.Numero+" AND CODEANIM = '"+act.Code+"' AND DATEACT = '"+act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
+
             cmd.CommandText = query;
 
             rdr = cmd.ExecuteReader();
 
-            Encadrant enc = new Encadrant();
+            bool found = rdr.Read();
+            rdr.Close();
 
-            //check si il y a un résultat
-            if(rdr.Read())
-            {
-                enc = new Encadrant(rdr.GetInt32("NOENCADRANT"), rdr.GetString("NOMENCADRANT"), rdr.GetString("PRENOMENCADRANT"),
-                    rdr.GetString("ADRMAILENCADRANT"), rdr.GetString("ETATSERVICE"), DateTime.Parse(rdr.GetString("DATENAISENCADRANT"))
-                    , rdr.GetString("MDP"), DateTime.Parse(rdr.GetString("DATEINSPRO")), DateTime.Parse(rdr.GetString("DATEVALIDITE")) );
-
-                rdr.Close();
-
-                return enc;
-
-
-            }
-
-            rdr.Close();       
-            return enc;
-          
+            return found;    
         }
 
-       public static void Deconnection()
+        public static List<Encadrant> getEncadrants()
         {
+            string query = "SELECT * FROM ENCADRANT AS E, PROFIL AS P WHERE P.USER = E.USER";
+
+            cmd.CommandText = query;
+            rdr = cmd.ExecuteReader();
+
+            Encadrant enc;
+
+            List<Encadrant> listEnc = new List<Encadrant>();
+
+            while(rdr.Read())
+            {
+                enc = new Encadrant(rdr.GetInt32("NOENCADRANT"), rdr.GetString("NOMENCADRANT"), rdr.GetString("PRENOMENCADRANT"),
+                   rdr.GetString("ADRMAILENCADRANT"), rdr.GetString("ETATSERVICE"), DateTime.Parse(rdr.GetString("DATENAISENCADRANT"))
+                   , rdr.GetString("MDP"), DateTime.Parse(rdr.GetString("DATEINSPRO")), DateTime.Parse(rdr.GetString("DATEVALIDITE")));
+
+                listEnc.Add(enc);
+            }
+
             rdr.Close();
+
+            return listEnc;
+        }
+
+        public static void Deconnection()
+        {
+            if(rdr != null)
+                rdr.Close();
+
             conn.Close();
         }
 
-        public static Loisant getLoisant()
+        public static Loisant getLoisant(string user, string mdp)
         {
-            string query = "SELECT * FROM";
+            string query = "SELECT * FROM LOISANT AS L, PROFIL AS P"
+               + " WHERE L.USER = P.USER AND P.USER = '" + user+"' AND P.MDP = '"+mdp+"'";
 
-            return new Loisant();
+            Loisant loi = new Loisant();
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            if(rdr.Read())
+            {
+                loi = new Loisant(rdr.GetInt32("NOLOISANT"), rdr.GetString("NOMLOISANT"), rdr.GetString("PRENOMLOISANT"),
+                    rdr.GetDateTime("DATENAISLOISANT"), rdr.GetDateTime("DATEFINSEJOUR"), rdr.GetDateTime("DATEDEBSEJOUR"));
+            }
+
+            rdr.Close();
+
+            return loi;
         }
 
         public static List<Animation> getAnimations()
@@ -270,8 +380,6 @@ namespace VVA_PPE1.Modele
                 listAct.Add(act_etat);
             }
 
-
-
             rdr.Close();
 
             return listAct;
@@ -279,7 +387,7 @@ namespace VVA_PPE1.Modele
 
         public static bool isActiviteExist(Activite act)
         {
-            string query = "SELECT CODEANIM FROM ACTIVITE WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '"+ act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")+"'";
+            string query = "SELECT CODEANIM FROM ACTIVITE WHERE DATEACT = '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
 
             cmd.CommandText = query;
 
@@ -294,7 +402,7 @@ namespace VVA_PPE1.Modele
         public static bool addActivite(Activite act)
         {
             string query = "INSERT INTO ACTIVITE(CODEANIM, DATEACT, NOENCADRANT, CODEETATACT, HRRDVACT, PRIXACT, HRDEBUTACT, HRFINACT, OBJECTIFACT)"
-              + "VALUES('" + act.Code + "', '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', " + act.NoEncadrant + ",'" + act.Etat.Code + "', '" + act.HrRDV + "',"
+              + "VALUES('" + act.Code + "', '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + act.NoEncadrant + "','" + act.Etat.Code + "', '" + act.HrRDV + "',"
              + " " + act.Prix.ToString().Replace(',', '.') + ", '" + act.HrDebut + "', '" + act.HrFin + "', '" + act.Objectif + "')";
 
 
@@ -303,9 +411,15 @@ namespace VVA_PPE1.Modele
             return cmd.ExecuteNonQuery() != 0 ? true : false;
         }
 
-        public static bool modifyActivite()
+        public static bool modifyActivite(Activite act)
         {
-            string query = "";
+            string query = "UPDATE ACTIVITE"
+                + " SET NOENCADRANT = '" + act.NoEncadrant+"'"
+                + " , CODEETATACT = '" + act.Etat.Code + "' , HRRDVACT = '" + act.HrRDV + "' , PRIXACT = " + act.Prix.ToString().Replace(',', '.')
+                + " , HRDEBUTACT = '" + act.HrDebut+ "', HRFINACT = '" + act.HrFin.ToString() + "'"
+                + " , DATEANNULATIONACT = '" + act.DateAnnulation.ToString("yyyy-MM-dd") + "', OBJECTIFACT = '" + act.Objectif + "'"
+                + "WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '" + act.Date.ToString("yyyy-MM-dd") + "'";
+
 
             cmd.CommandText = query;
 

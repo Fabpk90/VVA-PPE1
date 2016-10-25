@@ -54,5 +54,16 @@ namespace VVA_PPE1.Actor
         {
             this.Numero = -1;
         }
+
+
+        public string getDescription()
+        {
+            return "Nom: " + Nom + "\nPrénom: " + Prenom + "\nEtat service: " + EtatService;
+        }
+
+        public override string ToString()
+        {
+            return Nom + " " + Prenom;
+        }
     }
 }

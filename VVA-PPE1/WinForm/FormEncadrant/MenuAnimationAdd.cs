@@ -94,6 +94,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
+            menuAnimationListe.reload();
             menuAnimationListe.Show();
 
             this.Close();

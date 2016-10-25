@@ -11,6 +11,7 @@ using VVA_PPE1.Actor;
 using VVA_PPE1.Modele;
 using VVA_PPE1.WinForm;
 using VVA_PPE1.WinForm.FormEncandrant;
+using VVA_PPE1.WinForm.FormLoisant;
 
 namespace VVA_PPE1
 {
@@ -24,9 +25,8 @@ namespace VVA_PPE1
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
             if (!BDDInteraction.Connection())
-            {
-                //TO DO: alerte que la bdd est pas accessible 
-                MessageBox.Show("");
+            { 
+                MessageBox.Show("Base de donnée non accessible");
             }
                            
         }
@@ -41,20 +41,51 @@ namespace VVA_PPE1
                 {
                     Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text);                 
 
-                    MenuEncadrant menu = new MenuEncadrant(encadrant, this);
+                    if(encadrant.Nom != "")
+                    {
+                        MenuEncadrant menu = new MenuEncadrant(encadrant, this);
 
-                    menu.Show();
-                    this.Hide();
+                        menu.Show();
+                        this.Hide();
+                    }
+                    else
+                        MessageBox.Show("Informations érronées");
+
+
                 }
                 else // loisant
                 {
-                   // Loisant encadrant = BDDInteraction.getLoisant(tbNom.Text, tbPrenom.Text, tbMdp.Text);
+                    Loisant loisant = BDDInteraction.getLoisant(tbUser.Text, tbMdp.Text);
+
+                    if(loisant.Nom != "")
+                    {
+                        MenuLoisant menu = new MenuLoisant(loisant, this);
+
+                        menu.Show();
+                        this.Hide();
+                    }
+                    else
+                        MessageBox.Show("Informations érronées");
+
                 }
             }
             else
             {
                 MessageBox.Show("Veuillez renseignez tout les champs");
             }
+        }
+
+        public void resetFields()
+        {
+            tbMdp.Text = "";
+            tbUser.Text = "";
+
+            cbEncadrant.Checked = false;
+        }
+
+        private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            BDDInteraction.Deconnection();
         }
     }
 }

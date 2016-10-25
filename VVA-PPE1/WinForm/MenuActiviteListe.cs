@@ -20,16 +20,14 @@ namespace VVA_PPE1.WinForm
         private bool isEncadrant;
         private Encadrant enc;
 
-        public MenuActiviteListe()
-        {
-            InitializeComponent();
-        }
+        private List<Encadrant> listEnc = BDDInteraction.getEncadrants();
 
         public MenuActiviteListe(bool isEncadrant)
         {
             this.isEncadrant = isEncadrant;
 
             InitializeComponent();
+            btnPlanAct.Enabled = isEncadrant;
         }
 
         public MenuActiviteListe(bool isEncadrant, Encadrant enc) : this(isEncadrant)
@@ -40,17 +38,18 @@ namespace VVA_PPE1.WinForm
         private void MenuActiviteListe_Load(object sender, EventArgs e)
         {        
             listBAct.Items.AddRange(BDDInteraction.getActivites().ToArray());
+
+            if(listBAct.Items.Count != 0)
+            {
+                listBAct.SelectedIndex = 0;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             MenuActiviteAdd menuAdd;
-            if (listBAct.SelectedIndex != -1)
-            {
-                menuAdd = new MenuActiviteAdd(this, (Activite) listBAct.SelectedItem);
-            }
-            else
-                menuAdd = new MenuActiviteAdd(this);
+            
+            menuAdd = new MenuActiviteAdd(this);
 
             menuAdd.Show();
             this.Hide();
@@ -59,6 +58,46 @@ namespace VVA_PPE1.WinForm
         public Encadrant getEncadrant()
         {
             return enc;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if(listBAct.SelectedIndex != -1)
+            {
+                MenuActiviteAdd menu = new MenuActiviteAdd(this, (Activite)listBAct.SelectedItem);
+
+                menu.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Selectionner une activité pour la modifier");
+            }
+            
+        }
+
+        private void listBAct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBAct.SelectedIndex != -1)
+            {
+                Activite act = ((Activite)listBAct.SelectedItem);
+
+                lblDesc.Text = act.getDescription();
+                lblDescEnc.Text = listEnc[act.NoEncadrant].getDescription();
+            }
+        }
+
+        private void btnPlanAct_Click(object sender, EventArgs e)
+        {
+            if(listBAct.SelectedIndex != -1)
+            {
+                MenuPlanning planning = new MenuPlanning((Activite)listBAct.SelectedItem, enc, this);
+
+                this.Hide();
+                planning.Show();
+            }
+            else
+                MessageBox.Show("Séléctionner une activité");
         }
     }
 }

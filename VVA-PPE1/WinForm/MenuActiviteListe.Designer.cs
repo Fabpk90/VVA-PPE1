@@ -32,6 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.lblDescEnc = new System.Windows.Forms.Label();
+            this.btnPlanAct = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBAct
@@ -41,6 +44,7 @@
             this.listBAct.Name = "listBAct";
             this.listBAct.Size = new System.Drawing.Size(248, 316);
             this.listBAct.TabIndex = 0;
+            this.listBAct.SelectedIndexChanged += new System.EventHandler(this.listBAct_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -70,12 +74,44 @@
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Modifier";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // lblDesc
+            // 
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Location = new System.Drawing.Point(272, 353);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(35, 13);
+            this.lblDesc.TabIndex = 4;
+            this.lblDesc.Text = "label2";
+            // 
+            // lblDescEnc
+            // 
+            this.lblDescEnc.AutoSize = true;
+            this.lblDescEnc.Location = new System.Drawing.Point(272, 268);
+            this.lblDescEnc.Name = "lblDescEnc";
+            this.lblDescEnc.Size = new System.Drawing.Size(35, 13);
+            this.lblDescEnc.TabIndex = 5;
+            this.lblDescEnc.Text = "label2";
+            // 
+            // btnPlanAct
+            // 
+            this.btnPlanAct.Location = new System.Drawing.Point(267, 530);
+            this.btnPlanAct.Name = "btnPlanAct";
+            this.btnPlanAct.Size = new System.Drawing.Size(95, 53);
+            this.btnPlanAct.TabIndex = 6;
+            this.btnPlanAct.Text = "Géré les activités";
+            this.btnPlanAct.UseVisualStyleBackColor = true;
+            this.btnPlanAct.Click += new System.EventHandler(this.btnPlanAct_Click);
             // 
             // MenuActiviteListe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 595);
+            this.Controls.Add(this.btnPlanAct);
+            this.Controls.Add(this.lblDescEnc);
+            this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
@@ -94,5 +130,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.Label lblDescEnc;
+        private System.Windows.Forms.Button btnPlanAct;
     }
 }

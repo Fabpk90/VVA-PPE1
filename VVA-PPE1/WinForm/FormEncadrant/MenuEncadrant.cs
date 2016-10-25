@@ -27,8 +27,8 @@ namespace VVA_PPE1.WinForm.FormEncandrant
 
         private void MenuEncadrant_FormClosed(object sender, FormClosedEventArgs e)
         {
-            BDDInteraction.Deconnection();
-            menuPrincipal.Close();
+            menuPrincipal.resetFields();
+            menuPrincipal.Show();
         }
 
         private void btnListeActivite_Click(object sender, EventArgs e)

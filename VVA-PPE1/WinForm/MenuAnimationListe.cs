@@ -39,14 +39,8 @@ namespace VVA_PPE1.WinForm
         }
 
         private void MenuAnimationListe_Load(object sender, EventArgs e)
-        {                    
-            listBAnim.Items.AddRange(BDDInteraction.getAnimations().ToArray());
-
-            //if ther is some elements, set the first selected
-            if(listBAnim.Items.Count != 0)
-            {
-                listBAnim.SelectedIndex = 0;
-            }
+        {
+            loadAnim();
         }
 
         private void listBAnim_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,24 +50,7 @@ namespace VVA_PPE1.WinForm
             {
                 Animation anim = ((Animation)listBAnim.SelectedItem);
 
-                lblNom.Text = anim.Nom;
-                lblNomType.Text = anim.AnimType.Nom;
-
-                lblCom.Text = anim.Commentaire;
-                lblDesc.Text = anim.Desc;
-
-                lblDtCrea.Text = anim.DtCreation.ToShortDateString();
-                lblDtVal.Text = anim.DtValidite.ToShortDateString();
-
-                lblDuree.Text = "" + anim.Duree;
-                lblLimitAge.Text = "" + anim.LimiteAge + " ans";
-
-                lblNbPlace.Text = "" + anim.NbPlace;
-
-                lblTarif.Text = "" + anim.Tarif;
-
-                lblCom.Text = anim.Commentaire;
-                                
+                lblDescription.Text = anim.getDescription();                       
             }
         }
 
@@ -90,17 +67,14 @@ namespace VVA_PPE1.WinForm
             else
             {
                 MessageBox.Show("Ajouter un type d'animation d'abord");
-            }
-
-            
+            }         
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
             //if the user has selected an animation
             if(listBAnim.SelectedIndex != -1)
-            {
-               
+            {            
                 MenuAnimationAdd menuAdd = new MenuAnimationAdd(this, (Animation) listBAnim.SelectedItem);
 
                 menuAdd.Show();
@@ -109,6 +83,23 @@ namespace VVA_PPE1.WinForm
             else
             {
                 MessageBox.Show("Selectionner une animation avant");
+            }
+        }
+
+        public void reload()
+        {
+            loadAnim();
+        }
+
+        private void loadAnim()
+        {
+            listBAnim.Items.Clear();
+            listBAnim.Items.AddRange(BDDInteraction.getAnimations().ToArray());
+
+            //if ther is some elements, set the first selected
+            if (listBAnim.Items.Count != 0)
+            {
+                listBAnim.SelectedIndex = 0;
             }
         }
     }

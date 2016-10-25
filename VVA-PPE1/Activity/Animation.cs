@@ -234,7 +234,40 @@ namespace VVA_PPE1.Activity
         {
             string desc = "";
 
-            desc += "";
+            desc += "Code :" + this.codeAnim + "\n";
+            desc += "Nom :" + this.nom + "\n";
+
+            desc += "Date creation :" + this.dtCreation.ToLongDateString() + "\n";
+            desc += "Date validite :" + this.dtValidite.ToLongDateString() + "\n";
+
+            desc += "Duree :" + this.duree + " (min) \n";
+            desc += "Limite d'âge :" + this.limiteAge + " ans \n";
+            desc += "Description :" + this.desc + " \n";
+            desc += "Type :" + this.animType.Nom + "\n";
+            desc += "Prix :" + this.tarif + " \n";
+
+            desc += "Nombres de place :" + this.nbPlace + "\n";
+
+            desc += "Difficulté :";
+
+            switch(this.difficulte)
+            {
+                case EdiffAnim.FACILE:
+                    desc += "facile";
+                    break;
+
+                case EdiffAnim.NORMAL:
+                    desc += "normal";
+                    break;
+
+                case EdiffAnim.DIFFICILE:
+                    desc += "difficile";
+                    break;
+            }
+
+            desc += "\n";
+
+
 
             return desc;
         }

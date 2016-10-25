@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VVA_PPE1.Actor
 {
-    class Loisant : Inscrit
+  public class Loisant : Inscrit
     {
         private Profil profil;
 
@@ -54,16 +54,14 @@ namespace VVA_PPE1.Actor
 
         public Loisant()
         {
-
+            base.Nom = "";
         }
 
         public Loisant(int numero, string nom, string prenom, DateTime dtNaissance, DateTime dtDebutSejour, DateTime dtFinSejour) 
             : base(nom, prenom, dtNaissance, numero)
         {
-            
             this.dtDebutSejour = dtDebutSejour;
             this.dtFinSejour = dtFinSejour;
-                           
         }
 
         public void SetProfil(Profil profil)
@@ -74,6 +72,11 @@ namespace VVA_PPE1.Actor
         public void SetProfil(string mdp, DateTime dtInscription, DateTime dtValidite)
         {
             this.profil = new Profil(mdp, dtInscription, dtValidite);
+        }
+
+        public override string ToString()
+        {
+            return Nom + " " + Prenom;
         }
     }
 }

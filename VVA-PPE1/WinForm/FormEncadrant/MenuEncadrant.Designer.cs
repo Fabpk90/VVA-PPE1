@@ -30,11 +30,12 @@
         {
             this.btnListeAnim = new System.Windows.Forms.Button();
             this.btnListeActivite = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnListeAnim
             // 
-            this.btnListeAnim.Location = new System.Drawing.Point(77, 220);
+            this.btnListeAnim.Location = new System.Drawing.Point(77, 144);
             this.btnListeAnim.Name = "btnListeAnim";
             this.btnListeAnim.Size = new System.Drawing.Size(173, 23);
             this.btnListeAnim.TabIndex = 0;
@@ -44,7 +45,7 @@
             // 
             // btnListeActivite
             // 
-            this.btnListeActivite.Location = new System.Drawing.Point(77, 281);
+            this.btnListeActivite.Location = new System.Drawing.Point(77, 214);
             this.btnListeActivite.Name = "btnListeActivite";
             this.btnListeActivite.Size = new System.Drawing.Size(173, 23);
             this.btnListeActivite.TabIndex = 1;
@@ -52,17 +53,29 @@
             this.btnListeActivite.UseVisualStyleBackColor = true;
             this.btnListeActivite.Click += new System.EventHandler(this.btnListeActivite_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(86, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(164, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Menu Encadrant";
+            // 
             // MenuEncadrant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 562);
+            this.ClientSize = new System.Drawing.Size(333, 325);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnListeActivite);
             this.Controls.Add(this.btnListeAnim);
             this.Name = "MenuEncadrant";
             this.Text = "MenuEncadrant";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MenuEncadrant_FormClosed);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,5 +83,6 @@
 
         private System.Windows.Forms.Button btnListeAnim;
         private System.Windows.Forms.Button btnListeActivite;
+        private System.Windows.Forms.Label label1;
     }
 }

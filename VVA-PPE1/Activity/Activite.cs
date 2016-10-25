@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VVA_PPE1.Actor;
+using VVA_PPE1.Modele;
 
 namespace VVA_PPE1.Activity
 {
@@ -12,7 +13,13 @@ namespace VVA_PPE1.Activity
     {
         private string code;
 
+        /*
+         * TO DO: voir pour le noencadrant comment faire pour trouver 
+         * un truc opti pour avoir ses infos
+         */
+
         private int noEncadrant;
+        private string identiteEncadrant;  //nom + prenom
 
         private DateTime date;
         private TimeSpan hrRDV;
@@ -41,8 +48,6 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        
-
         public float Prix
         {
             get
@@ -55,11 +60,6 @@ namespace VVA_PPE1.Activity
                 prix = value;
             }
         }
-
-       
-
-       
-
         public DateTime DateAnnulation
         {
             get
@@ -112,7 +112,7 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        internal Activite_Etat Etat
+        public Activite_Etat Etat
         {
             get
             {
@@ -181,7 +181,7 @@ namespace VVA_PPE1.Activity
 
             this.dateAnnulation = dateAnnulation;
 
-            this.objectif = objectif;
+            this.objectif = objectif;         
 
             etat = new Activite_Etat();
         }
@@ -193,6 +193,25 @@ namespace VVA_PPE1.Activity
         public override string ToString()
         {
             return code + " " + date.ToShortDateString();
+        }
+        
+        public string getDescription()
+        {
+            string desc = "";
+
+            desc += "Code : " + code + "\n";
+            desc += "Date :" + date.ToShortDateString() + "\n";
+            desc += "Heure de rdv :" + hrRDV + "\n";
+
+            desc += "Prix :" + prix + "\n";
+
+            desc += "Heure de début :" +hrDebut + "\n";
+            desc += "Heure de fin :" + hrFin + "\n";
+
+            desc += "Objectif :" + objectif + "\n";
+            desc += "Etat :" + etat + "\n";
+
+            return desc;
         }
     }
 }

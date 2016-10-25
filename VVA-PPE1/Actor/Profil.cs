@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace VVA_PPE1.Actor
 {
 
-    enum EtypeProfil
+  public enum EtypeProfil
     {
         LOISANT = 0,
         ENCADRANT,
         ADMIN
     }
 
-    class Profil
+   public class Profil
     {
         private string mdp;
 

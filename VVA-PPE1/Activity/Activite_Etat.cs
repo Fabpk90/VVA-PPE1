@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VVA_PPE1.Activity
 {
-    class Activite_Etat
+   public class Activite_Etat
     {
         private string code;
         private string nom;

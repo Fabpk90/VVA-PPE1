@@ -7,19 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VVA_PPE1.Actor;
 
 namespace VVA_PPE1.WinForm.FormLoisant
 {
     public partial class MenuLoisant : Form
     {
-        public MenuLoisant()
+        private Loisant loi;
+        private MenuPrincipal menuPrincipal;
+
+        public MenuLoisant(Loisant loi, MenuPrincipal menuPrincipal)
         {
+            this.menuPrincipal = menuPrincipal;
+            this.loi = loi;
+
             InitializeComponent();
         }
 
         private void btnVoirAnimation_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MenuLoisant_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            menuPrincipal.resetFields();
+            menuPrincipal.Show();
         }
     }
 }

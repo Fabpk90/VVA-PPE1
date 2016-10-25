@@ -15,7 +15,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
     public partial class MenuActiviteAdd : Form
     {
         private MenuActiviteListe menuActiviteListe;
-        private Activite selectedItem;
+        private Activite selectedItem = null;
 
         public MenuActiviteAdd()
         {
@@ -44,7 +44,36 @@ namespace VVA_PPE1.WinForm.FormEncadrant
         //editing an activity
         public MenuActiviteAdd(MenuActiviteListe menuActiviteListe, Activite selectedItem) : this(menuActiviteListe)
         {
-            this.selectedItem = selectedItem;                         
+            this.selectedItem = selectedItem;
+
+            btnAdd.Text = "Modifier";
+
+            cbCodeAnim.SelectedItem = selectedItem.Code;
+
+            dtAct.Value = selectedItem.Date;
+
+            //search which state(by name) is the act
+            //because cbEtat has object, so sleceteditem = doesn't work as it should
+            for(int i = 0; i < cbEtat.Items.Count; ++i)
+            {
+
+                if( ((Activite_Etat) cbEtat.Items[i]).Nom == selectedItem.Etat.Nom)
+                {
+                    cbEtat.SelectedIndex = i;
+                    break;
+                }
+
+            }
+            
+
+            dtHrDebut.Value = DateTime.Parse(selectedItem.HrDebut.ToString());
+            dtHrFin.Value = DateTime.Parse(selectedItem.HrFin.ToString());
+            dtRDV.Value = DateTime.Parse(selectedItem.HrRDV.ToString());
+
+            numPrix.Value = (decimal) selectedItem.Prix;
+
+            rtObj.Text = selectedItem.Objectif;    
+                                      
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -68,20 +97,31 @@ namespace VVA_PPE1.WinForm.FormEncadrant
                 act.HrFin = dtHrFin.Value.TimeOfDay;
 
                 act.Objectif = rtObj.Text;
-                if (!BDDInteraction.isActiviteExist(act))
+
+                if(selectedItem != null)//modif en cours
                 {
-                    if (BDDInteraction.addActivite(act))
+                    //MessageBox.Show("test");
+                    if(BDDInteraction.modifyActivite(act))
                         MessageBox.Show("Activité ajoutée");
-                    else
-                        MessageBox.Show("Activité non ajoutée");
                 }
                 else
                 {
-                    MessageBox.Show("L'activité existe déjà");
+                    if (!BDDInteraction.isActiviteExist(act))
+                    {
+                        if (BDDInteraction.addActivite(act))
+                            MessageBox.Show("Activité ajoutée");
+                        else
+                            MessageBox.Show("Activité non ajoutée");                       
+                    }
+                    else
+                    {
+                        MessageBox.Show("L'activité existe déjà");
+                    }
                 }
+               
             }
             else
-                MessageBox.Show("Renseigner tout les champs");
+                MessageBox.Show("Renseigner tout les champs", "Informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
