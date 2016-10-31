@@ -65,14 +65,13 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
             }
             
-
             dtHrDebut.Value = DateTime.Parse(selectedItem.HrDebut.ToString());
             dtHrFin.Value = DateTime.Parse(selectedItem.HrFin.ToString());
             dtRDV.Value = DateTime.Parse(selectedItem.HrRDV.ToString());
 
             numPrix.Value = (decimal) selectedItem.Prix;
 
-            rtObj.Text = selectedItem.Objectif;    
+            rtObj.Text = selectedItem.Objectif;
                                       
         }
 
@@ -84,8 +83,8 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
                 act.Code = cbCodeAnim.SelectedItem.ToString();             
                 act.Date = dtAct.Value;
-
-                act.NoEncadrant = menuActiviteListe.getEncadrant().Numero;
+             
+                act.NoEncadrant = menuActiviteListe.getEncadrant().Numero;           
 
                 act.Etat = (Activite_Etat)cbEtat.SelectedItem;
 
@@ -99,8 +98,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
                 act.Objectif = rtObj.Text;
 
                 if(selectedItem != null)//modif en cours
-                {
-                    //MessageBox.Show("test");
+                {                 
                     if(BDDInteraction.modifyActivite(act))
                         MessageBox.Show("Activité ajoutée");
                 }

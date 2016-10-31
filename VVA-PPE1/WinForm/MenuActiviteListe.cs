@@ -16,22 +16,19 @@ namespace VVA_PPE1.WinForm
 {
     public partial class MenuActiviteListe : Form
     {
-        
-        private bool isEncadrant;
         private Encadrant enc;
 
         private List<Encadrant> listEnc = BDDInteraction.getEncadrants();
 
-        public MenuActiviteListe(bool isEncadrant)
-        {
-            this.isEncadrant = isEncadrant;
-
+        public MenuActiviteListe()
+        {      
             InitializeComponent();
-            btnPlanAct.Enabled = isEncadrant;
+            btnPlanAct.Enabled = false;
         }
 
-        public MenuActiviteListe(bool isEncadrant, Encadrant enc) : this(isEncadrant)
+        public MenuActiviteListe( Encadrant enc)
         {
+            InitializeComponent();
             this.enc = enc;
         }
 
@@ -91,7 +88,7 @@ namespace VVA_PPE1.WinForm
         {
             if(listBAct.SelectedIndex != -1)
             {
-                MenuPlanning planning = new MenuPlanning((Activite)listBAct.SelectedItem, enc, this);
+                MenuPlanningAdd planning = new MenuPlanningAdd((Activite)listBAct.SelectedItem, enc, this);
 
                 this.Hide();
                 planning.Show();

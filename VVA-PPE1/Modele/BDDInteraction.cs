@@ -71,6 +71,70 @@ namespace VVA_PPE1.Modele
             return enc;
 
         }
+
+        /// <summary>
+        /// Check if the loisant is laready iscrit, then inscrit the loisant
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        /// <param name="loi"></param>
+        /// <param name="enc"></param>
+        /// <param name="remarque"></param>
+        /// <param name="nbInscription"></param>
+        /// <returns></returns>
+        public static bool inscription(Activite selectedItem, Loisant loi, Encadrant enc,string remarque, out int nbInscription)
+        {
+
+            string query = "SELECT NOLOISANT FROM INSCRIPTION"
+                + " WHERE NOLOISANT = " + loi.Numero + " AND CODEANIM = '"+selectedItem.Code+"' AND DATEACT = '" + selectedItem.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'"
+                +" AND DATE_ANNULATION IS NULL";
+
+            cmd.CommandText = query;
+
+            if (cmd.ExecuteNonQuery() != 0)
+            {
+                nbInscription = -1;
+                return false;
+            }
+
+            
+            nbInscription = getInscriptionNb(loi);
+
+             query = "INSERT INTO INSCRIPTION(NOLOISANT, NOINSCRIP, CODEANIM, DATEACT, DATEINSCRIP, REMARQUEINSCRIP)"
+                + " VALUES('" + loi.Numero + "', " + (nbInscription + 1) + ", '" + selectedItem.Code + "', "
+                + " '" + selectedItem.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', NOW(), '')"; 
+
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? true : false;
+        }
+
+        public static bool cancelInscription(Loisant loi, int numInscription)
+        {
+            string query = "UPDATE INSCRIPTION "
+                + " SET DATE_ANNULATION = NOW() WHERE NOLOISANT = " + loi.Numero + " AND NOINSCRIP = " + numInscription;
+
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? true : false;
+        }
+
+        public static int getInscriptionNb(Loisant loi)
+        {
+            string query = "SELECT COUNT(NOINSCRIP) AS NBINSCRIP FROM INSCRIPTION"
+                + " WHERE NOLOISANT = " + loi.Numero;
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            rdr.Read();
+
+            int inscripNb = rdr.GetInt32("NBINSCRIP");
+            rdr.Close();
+
+            return inscripNb;
+        }
+
         /// <summary>
         /// Affecte les encadrants aux activités
         /// </summary>
@@ -167,7 +231,7 @@ namespace VVA_PPE1.Modele
         public static Loisant getLoisant(string user, string mdp)
         {
             string query = "SELECT * FROM LOISANT AS L, PROFIL AS P"
-               + " WHERE L.USER = P.USER AND P.USER = '" + user+"' AND P.MDP = '"+mdp+"'";
+               + " WHERE L.USER = P.USER AND P.USER = '" + user + "' AND P.MDP = '" + mdp + "'";
 
             Loisant loi = new Loisant();
 
@@ -175,7 +239,7 @@ namespace VVA_PPE1.Modele
 
             rdr = cmd.ExecuteReader();
 
-            if(rdr.Read())
+            if (rdr.Read())
             {
                 loi = new Loisant(rdr.GetInt32("NOLOISANT"), rdr.GetString("NOMLOISANT"), rdr.GetString("PRENOMLOISANT"),
                     rdr.GetDateTime("DATENAISLOISANT"), rdr.GetDateTime("DATEFINSEJOUR"), rdr.GetDateTime("DATEDEBSEJOUR"));
@@ -184,6 +248,75 @@ namespace VVA_PPE1.Modele
             rdr.Close();
 
             return loi;
+        }
+
+        public static Loisant getLoisant(string user)
+        {
+            string query = "SELECT * FROM LOISANT AS L, PROFIL AS P"
+               + " WHERE L.USER = P.USER AND P.USER = '" + user + "'";
+
+            Loisant loi = new Loisant();
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                loi = new Loisant(rdr.GetInt32("NOLOISANT"), rdr.GetString("NOMLOISANT"), rdr.GetString("PRENOMLOISANT"),
+                    rdr.GetDateTime("DATENAISLOISANT"), rdr.GetDateTime("DATEFINSEJOUR"), rdr.GetDateTime("DATEDEBSEJOUR"));
+            }
+
+            rdr.Close();
+
+            return loi;
+        }
+
+        public static List<Loisant> getLoisants()
+        {
+            string query = "SELECT * FROM LOISANT AS L, PROFIL AS P"
+              + " WHERE L.USER = P.USER ";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            List<Loisant> listLoisant = new List<Loisant>();
+
+            while (rdr.Read())
+            {
+                Loisant loi = new Loisant(rdr.GetInt32("NOLOISANT"), rdr.GetString("NOMLOISANT"), rdr.GetString("PRENOMLOISANT"),
+                    rdr.GetDateTime("DATENAISLOISANT"), rdr.GetDateTime("DATEFINSEJOUR"), rdr.GetDateTime("DATEDEBSEJOUR"));
+
+                listLoisant.Add(loi);
+            }
+
+            rdr.Close();
+
+            return listLoisant;
+        }
+
+        public static List<Loisant> getLoisantInscrit(Activite act)
+        {
+            string query = "SELECT L.NOLOISANT, NOMLOISANT, PRENOMLOISANT, DATENAISLOISANT, DATEFINSEJOUR, DATEDEBSEJOUR FROM LOISANT AS L, INSCRIPTION AS I"
+                + " WHERE L.NOLOISANT = I.NOLOISANT AND I.DATE_ANNULATION IS NULL";
+
+            cmd.CommandText = query;
+            rdr = cmd.ExecuteReader();
+
+            List<Loisant> listLoi = new List<Loisant>();
+
+            while(rdr.Read())
+            {
+                Loisant loi = new Loisant(rdr.GetInt32("NOLOISANT"), rdr.GetString("NOMLOISANT"), rdr.GetString("PRENOMLOISANT"),
+                    rdr.GetDateTime("DATENAISLOISANT"), rdr.GetDateTime("DATEFINSEJOUR"), rdr.GetDateTime("DATEDEBSEJOUR"));
+
+                listLoi.Add(loi);
+            }
+
+            rdr.Close();
+
+            return listLoi;
         }
 
         public static List<Animation> getAnimations()
@@ -354,6 +487,26 @@ namespace VVA_PPE1.Modele
             return listAct;
         }
 
+        public static bool cancelActivite(Activite act)
+        {
+            string query = "UPDATE ACTIVITE SET DATEANNULATIONACT = NOW() "
+                + "WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
+
+            cmd.CommandText = query;
+
+            if (cmd.ExecuteNonQuery() != 0)
+            {
+               query = "UPDATE INSCRIPTION SET DATE_ANNULATION = NOW() "
+                + "WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
+
+                cmd.CommandText = query;
+
+                return cmd.ExecuteNonQuery() != 0 ? true : false;
+            }
+            else
+                return false;
+        }
+
         public static List<Activite_Etat> getEtatActivite()
         {
             string query = "SELECT * FROM ETAT_ACT";
@@ -425,6 +578,79 @@ namespace VVA_PPE1.Modele
 
             return cmd.ExecuteNonQuery() != 0 ? true : false;
         }
+
+        public static List<Activite> getPlanningAnim(Animation anim)
+        {
+            //get act + etatAct depending on anim 
+            string query = "SELECT * FROM ACTIVITE AS A, ANIMATION AS AN, ETAT_ACT AS E"
+                + " WHERE A.CODEANIM = '" + anim.Code + "' AND A.CODEANIM = AN.CODEANIM AND A.CODEETATACT = E.CODEETATACT "
+                + " AND DATEANNULATIONACT IS NULL";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            List<Activite> listAct = new List<Activite>();
+
+            Activite act = new Activite();
+
+            while(rdr.Read())
+            {
+                act = new Activite();
+
+                act.Code = rdr.GetString("CODEANIM");
+                act.Date = rdr.GetDateTime("DATEACT");
+
+                act.NoEncadrant = rdr.GetInt32("NOENCADRANT");
+                act.HrRDV = (TimeSpan)rdr["HRRDVACT"];
+                act.Prix = rdr.GetFloat("PRIXACT");
+
+                act.HrDebut = (TimeSpan)rdr["HRDEBUTACT"];
+                act.HrFin = (TimeSpan)rdr["HRFINACT"];
+
+                if (!rdr.IsDBNull(8))// Date annulation is null?
+                    act.DateAnnulation = rdr.GetDateTime("DATEANNULATIONACT");
+                else
+                    act.DateAnnulation = new DateTime();
+
+                act.Objectif = rdr.GetString("OBJECTIFACT");
+
+                act.Etat = new Activite_Etat(rdr.GetString("CODEETATACT"), rdr.GetString("NOMETATACT"));
+
+                listAct.Add(act);
+
+            }
+
+            rdr.Close();
+
+            return listAct;
+        }
+
+        public static int getNbPlace(Animation anim)
+        {
+            string query = "SELECT (NBREPLACEANIM - COUNT(NOINSCRIP)) AS NBPLACESLIBRES FROM ANIMATION AS A, INSCRIPTION AS I"
+                + " WHERE A.CODEANIM = '"+anim.Code+"' AND A.CODEANIM = I.CODEANIM AND I.DATE_ANNULATION IS NULL"
+                +" GROUP BY A.CODEANIM";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+
+            int nbPlace = -1;
+
+            if (rdr.Read())
+                nbPlace = rdr.GetInt32("NBPLACESLIBRES");
+
+            rdr.Close();
+
+            return nbPlace;
+        }
+
+        /*
+        public static List<int> getNbPlace(List<Animation> anim)
+        {
+
+        }*/
             
     }
 }

@@ -20,7 +20,8 @@ namespace VVA_PPE1.WinForm.FormEncandrant
 
         private void btnListeAnim_Click(object sender, EventArgs e)
         {
-            MenuAnimationListe menu = new MenuAnimationListe(true, enc);
+
+            MenuAnimationListe menu = new MenuAnimationListe(enc);
 
             menu.Show();
         }
@@ -33,7 +34,7 @@ namespace VVA_PPE1.WinForm.FormEncandrant
 
         private void btnListeActivite_Click(object sender, EventArgs e)
         {
-            MenuActiviteListe menu = new MenuActiviteListe(true, enc);
+            MenuActiviteListe menu = new MenuActiviteListe(enc);
 
             menu.Show();
         }

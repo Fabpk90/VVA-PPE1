@@ -18,24 +18,28 @@ namespace VVA_PPE1.WinForm
 {
     public partial class MenuAnimationListe : Form
     {
-        private Encadrant enc;
+        private Encadrant enc = null;
+        private Loisant loi = null;
 
-        public MenuAnimationListe(bool IsEncadrant)
+        public MenuAnimationListe()
         {
             InitializeComponent();
-
-            //TO DO: disable elements depending on isencadrant
-
-            if(!IsEncadrant)
-            {
-                btnAddMenu.Hide();
-            }
-
         }
 
-        public MenuAnimationListe(bool IsEncadrant, Encadrant enc) : this(IsEncadrant)
+        public MenuAnimationListe(Encadrant enc) : this()
         {
             this.enc = enc;
+                    
+            btnAddMenu.Hide();
+            
+        }
+
+        public MenuAnimationListe(Loisant loi) : this ()
+        {
+            this.loi = loi;
+            
+            btnAddMenu.Hide();
+            
         }
 
         private void MenuAnimationListe_Load(object sender, EventArgs e)
@@ -96,10 +100,24 @@ namespace VVA_PPE1.WinForm
             listBAnim.Items.Clear();
             listBAnim.Items.AddRange(BDDInteraction.getAnimations().ToArray());
 
-            //if ther is some elements, set the first selected
+            //if there is some elements, set the first selected
             if (listBAnim.Items.Count != 0)
             {
                 listBAnim.SelectedIndex = 0;
+            }
+        }
+
+        private void btnPlanning_Click(object sender, EventArgs e)
+        {
+            if(listBAnim.SelectedIndex != -1)
+            {
+                MenuPlanningView menuPlann;
+                if (enc != null)
+                    menuPlann = new MenuPlanningView((Animation)listBAnim.SelectedItem, enc);
+                else
+                    menuPlann = new MenuPlanningView((Animation)listBAnim.SelectedItem, loi);
+
+                menuPlann.Show();
             }
         }
     }

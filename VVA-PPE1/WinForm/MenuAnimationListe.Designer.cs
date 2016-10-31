@@ -33,6 +33,7 @@
             this.btnAddMenu = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
+            this.btnPlanning = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBAnim
@@ -85,11 +86,22 @@
             this.lblDescription.TabIndex = 25;
             this.lblDescription.Text = "label3";
             // 
+            // btnPlanning
+            // 
+            this.btnPlanning.Location = new System.Drawing.Point(287, 489);
+            this.btnPlanning.Name = "btnPlanning";
+            this.btnPlanning.Size = new System.Drawing.Size(125, 23);
+            this.btnPlanning.TabIndex = 26;
+            this.btnPlanning.Text = "Planning de l\'activité";
+            this.btnPlanning.UseVisualStyleBackColor = true;
+            this.btnPlanning.Click += new System.EventHandler(this.btnPlanning_Click);
+            // 
             // MenuAnimationListe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 524);
+            this.Controls.Add(this.btnPlanning);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnAddMenu);
@@ -110,5 +122,6 @@
         private System.Windows.Forms.Button btnAddMenu;
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Button btnPlanning;
     }
 }

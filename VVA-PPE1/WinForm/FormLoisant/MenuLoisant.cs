@@ -26,6 +26,8 @@ namespace VVA_PPE1.WinForm.FormLoisant
 
         private void btnVoirAnimation_Click(object sender, EventArgs e)
         {
+            MenuAnimationListe menuAnim = new MenuAnimationListe(loi);
+            menuAnim.Show();
 
         }
 
@@ -33,6 +35,11 @@ namespace VVA_PPE1.WinForm.FormLoisant
         {
             menuPrincipal.resetFields();
             menuPrincipal.Show();
+        }
+
+        private void btnVoirActivite_Click(object sender, EventArgs e)
+        {
+            MenuActiviteListe menuAct = new MenuActiviteListe();
         }
     }
 }

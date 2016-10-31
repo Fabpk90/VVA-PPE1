@@ -19,7 +19,6 @@ namespace VVA_PPE1.Activity
          */
 
         private int noEncadrant;
-        private string identiteEncadrant;  //nom + prenom
 
         private DateTime date;
         private TimeSpan hrRDV;

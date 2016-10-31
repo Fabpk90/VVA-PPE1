@@ -77,11 +77,11 @@
     <Compile Include="WinForm\FormEncadrant\MenuEncadrant.Designer.cs">
       <DependentUpon>MenuEncadrant.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinForm\FormEncadrant\MenuPlanning.cs">
+    <Compile Include="WinForm\FormEncadrant\MenuPlanningAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinForm\FormEncadrant\MenuPlanning.Designer.cs">
-      <DependentUpon>MenuPlanning.cs</DependentUpon>
+    <Compile Include="WinForm\FormEncadrant\MenuPlanningAdd.Designer.cs">
+      <DependentUpon>MenuPlanningAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\FormLoisant\MenuLoisant.cs">
       <SubType>Form</SubType>
@@ -101,6 +101,12 @@
     <Compile Include="WinForm\MenuAnimationListe.Designer.cs">
       <DependentUpon>MenuAnimationListe.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\MenuPlanningView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\MenuPlanningView.Designer.cs">
+      <DependentUpon>MenuPlanningView.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,8 +125,8 @@
     <EmbeddedResource Include="WinForm\FormEncadrant\MenuEncadrant.resx">
       <DependentUpon>MenuEncadrant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinForm\FormEncadrant\MenuPlanning.resx">
-      <DependentUpon>MenuPlanning.cs</DependentUpon>
+    <EmbeddedResource Include="WinForm\FormEncadrant\MenuPlanningAdd.resx">
+      <DependentUpon>MenuPlanningAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormLoisant\MenuLoisant.resx">
       <DependentUpon>MenuLoisant.cs</DependentUpon>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\MenuAnimationListe.resx">
       <DependentUpon>MenuAnimationListe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\MenuPlanningView.resx">
+      <DependentUpon>MenuPlanningView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>

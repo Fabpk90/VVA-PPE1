@@ -267,8 +267,6 @@ namespace VVA_PPE1.Activity
 
             desc += "\n";
 
-
-
             return desc;
         }
     }

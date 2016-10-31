@@ -41,6 +41,7 @@ namespace VVA_PPE1
                 {
                     Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text);                 
 
+                    //if found
                     if(encadrant.Nom != "")
                     {
                         MenuEncadrant menu = new MenuEncadrant(encadrant, this);
