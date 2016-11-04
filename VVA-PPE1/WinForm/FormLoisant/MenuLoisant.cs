@@ -40,6 +40,8 @@ namespace VVA_PPE1.WinForm.FormLoisant
         private void btnVoirActivite_Click(object sender, EventArgs e)
         {
             MenuActiviteListe menuAct = new MenuActiviteListe();
+
+            menuAct.Show();
         }
     }
 }

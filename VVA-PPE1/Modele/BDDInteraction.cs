@@ -43,7 +43,7 @@ namespace VVA_PPE1.Modele
           
         }
 
-        public Encadrant getEncadrant(int noEnc)
+        public static Encadrant getEncadrant(int noEnc)
         {
             string query = "SELECT * FROM ENCADRANT AS E, PROFIL AS P WHERE NOENCADRANT = "+noEnc;
 
@@ -120,7 +120,7 @@ namespace VVA_PPE1.Modele
 
         public static int getInscriptionNb(Loisant loi)
         {
-            string query = "SELECT COUNT(NOINSCRIP) AS NBINSCRIP FROM INSCRIPTION"
+            string query = "SELECT MAX(NOINSCRIP) AS NBINSCRIP FROM INSCRIPTION"
                 + " WHERE NOLOISANT = " + loi.Numero;
 
             cmd.CommandText = query;
@@ -145,11 +145,9 @@ namespace VVA_PPE1.Modele
         {
             string query = "";
 
-            
-
             foreach (Encadrant enc in listEnc)
             {
-                if (!checkEncPlanning(enc, selectedAct))
+                if (!checkIfEncPlanned(enc, selectedAct))
                 {
                     query = "INSERT INTO PLANNING(NOENCADRANT, CODEANIM, DATEACT)"
                     + "VALUES( " + enc.Numero + ", '" + selectedAct.Code + "', '" + selectedAct.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "') ";
@@ -180,7 +178,7 @@ namespace VVA_PPE1.Modele
         /// <param name="enc"></param>
         /// <param name="act"></param>
         /// <returns>whether the Enc is affected on this act</returns>
-        public static bool checkEncPlanning(Encadrant enc, Activite act)
+        public static bool checkIfEncPlanned(Encadrant enc, Activite act)
         {
             string query = "SELECT NOENCADRANT FROM PLANNING "
                +" WHERE NOENCADRANT = "+enc.Numero+" AND CODEANIM = '"+act.Code+"' AND DATEACT = '"+act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
@@ -191,6 +189,11 @@ namespace VVA_PPE1.Modele
 
             bool found = rdr.Read();
             rdr.Close();
+
+            if(!found)
+            {
+                return enc.Numero != act.NoEncadrant ? false : true;
+            }
 
             return found;    
         }
@@ -299,7 +302,7 @@ namespace VVA_PPE1.Modele
         public static List<Loisant> getLoisantInscrit(Activite act)
         {
             string query = "SELECT L.NOLOISANT, NOMLOISANT, PRENOMLOISANT, DATENAISLOISANT, DATEFINSEJOUR, DATEDEBSEJOUR FROM LOISANT AS L, INSCRIPTION AS I"
-                + " WHERE L.NOLOISANT = I.NOLOISANT AND I.DATE_ANNULATION IS NULL";
+                + " WHERE L.NOLOISANT = I.NOLOISANT AND CODEANIM = '"+act.Code+"' AND DATEACT = '"+act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff")+"' AND I.DATE_ANNULATION IS NULL";
 
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
@@ -645,12 +648,5 @@ namespace VVA_PPE1.Modele
 
             return nbPlace;
         }
-
-        /*
-        public static List<int> getNbPlace(List<Animation> anim)
-        {
-
-        }*/
-            
     }
 }

@@ -28,17 +28,15 @@ namespace VVA_PPE1.WinForm
 
         public MenuAnimationListe(Encadrant enc) : this()
         {
-            this.enc = enc;
-                    
-            btnAddMenu.Hide();
-            
+            this.enc = enc;   
         }
 
         public MenuAnimationListe(Loisant loi) : this ()
         {
             this.loi = loi;
-            
-            btnAddMenu.Hide();
+
+            btnAddMenu.Visible = false;
+            btnModify.Visible = false;
             
         }
 

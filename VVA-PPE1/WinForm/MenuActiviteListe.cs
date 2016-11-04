@@ -23,7 +23,10 @@ namespace VVA_PPE1.WinForm
         public MenuActiviteListe()
         {      
             InitializeComponent();
-            btnPlanAct.Enabled = false;
+
+            btnPlanAct.Visible = false;
+            btnAdd.Visible = false;
+            btnEdit.Visible = false;
         }
 
         public MenuActiviteListe( Encadrant enc)
