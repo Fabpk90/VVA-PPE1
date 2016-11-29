@@ -85,8 +85,8 @@ namespace VVA_PPE1.Modele
         {
 
             string query = "SELECT NOLOISANT FROM INSCRIPTION"
-                + " WHERE NOLOISANT = " + loi.Numero + " AND CODEANIM = '"+selectedItem.Code+"' AND DATEACT = '" + selectedItem.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'"
-                +" AND DATE_ANNULATION IS NULL";
+                + " WHERE NOLOISANT = " + loi.Numero + " AND CODEANIM = '" + selectedItem.Code + "' AND DATEACT = '" + selectedItem.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'"
+                + " AND DATE_ANNULATION IS NULL";
 
             cmd.CommandText = query;
 
@@ -196,6 +196,13 @@ namespace VVA_PPE1.Modele
             }
 
             return found;    
+        }
+
+        public static bool checkIfEncPlannedToday(Encadrant enc)
+        {
+            string query = "";
+
+            return false;
         }
 
         public static List<Encadrant> getEncadrants()
