@@ -40,9 +40,9 @@
             // listBAct
             // 
             this.listBAct.FormattingEnabled = true;
-            this.listBAct.Location = new System.Drawing.Point(12, 268);
+            this.listBAct.Location = new System.Drawing.Point(12, 86);
             this.listBAct.Name = "listBAct";
-            this.listBAct.Size = new System.Drawing.Size(248, 316);
+            this.listBAct.Size = new System.Drawing.Size(248, 498);
             this.listBAct.TabIndex = 0;
             this.listBAct.SelectedIndexChanged += new System.EventHandler(this.listBAct_SelectedIndexChanged);
             // 
@@ -79,7 +79,7 @@
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(272, 353);
+            this.lblDesc.Location = new System.Drawing.Point(272, 171);
             this.lblDesc.Name = "lblDesc";
             this.lblDesc.Size = new System.Drawing.Size(35, 13);
             this.lblDesc.TabIndex = 4;
@@ -88,7 +88,7 @@
             // lblDescEnc
             // 
             this.lblDescEnc.AutoSize = true;
-            this.lblDescEnc.Location = new System.Drawing.Point(272, 268);
+            this.lblDescEnc.Location = new System.Drawing.Point(272, 86);
             this.lblDescEnc.Name = "lblDescEnc";
             this.lblDescEnc.Size = new System.Drawing.Size(35, 13);
             this.lblDescEnc.TabIndex = 5;

@@ -8,37 +8,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VVA_PPE1.Activity;
+using VVA_PPE1.Actor;
 using VVA_PPE1.Modele;
 
 namespace VVA_PPE1.WinForm.FormEncadrant
 {
     public partial class MenuActiviteAdd : Form
     {
-        private MenuActiviteListe menuActiviteListe;
+        private Encadrant enc;
         private Activite selectedItem = null;
 
-        public MenuActiviteAdd()
+        public MenuActiviteAdd(Encadrant enc)
         {
+            this.enc = enc;
+
             InitializeComponent();
+
+            Init();
         }
 
         //adding an activity
         public MenuActiviteAdd(MenuActiviteListe menuActiviteListe)
         {
-            this.menuActiviteListe = menuActiviteListe;
+            enc = menuActiviteListe.getEncadrant();
             InitializeComponent();
 
+            Init();           
+        }
+
+        private void Init()
+        {
             cbEtat.Items.AddRange(BDDInteraction.getEtatActivite().ToArray());
 
-            
 
-            foreach(Animation anim in BDDInteraction.getAnimations())
+            foreach (Animation anim in BDDInteraction.getAnimations())
             {
                 cbCodeAnim.Items.Add(anim.Code);
-            }
+            }      
 
-            cbCodeAnim.Items.AddRange(BDDInteraction.getAnimations().ToArray());
-            
         }
 
         //editing an activity
@@ -84,7 +91,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
                 act.Code = cbCodeAnim.SelectedItem.ToString();             
                 act.Date = dtAct.Value;
              
-                act.NoEncadrant = menuActiviteListe.getEncadrant().Numero;           
+                act.NoEncadrant = enc.Numero;           
 
                 act.Etat = (Activite_Etat)cbEtat.SelectedItem;
 
@@ -104,7 +111,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
                 }
                 else
                 {
-                    if (!BDDInteraction.isActiviteExist(act))
+                    if (!BDDInteraction.checkIfActiviteExists(act))
                     {
                         if (BDDInteraction.addActivite(act))
                             MessageBox.Show("Activité ajoutée");
@@ -119,7 +126,18 @@ namespace VVA_PPE1.WinForm.FormEncadrant
                
             }
             else
-                MessageBox.Show("Renseigner tout les champs", "Informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Renseigner tous les champs", "Informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+        private void MenuActiviteAdd_Load(object sender, EventArgs e)
+        {
+            if (cbCodeAnim.Items.Count == 0)
+            {
+                this.Hide();
+                MessageBox.Show("Aucune Animation est disponible");
+                this.Close();
+            }
         }
     }
 }

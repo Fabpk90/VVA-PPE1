@@ -103,6 +103,11 @@ namespace VVA_PPE1.WinForm
             {
                 listBAnim.SelectedIndex = 0;
             }
+            else
+            {
+                lblDescription.Text = "";
+            }
+
         }
 
         private void btnPlanning_Click(object sender, EventArgs e)
@@ -117,6 +122,16 @@ namespace VVA_PPE1.WinForm
 
                 menuPlann.Show();
             }
+            else
+            {
+                MessageBox.Show("Selectionner une animation avant");
+            }
+        }
+
+        private void btnAddType_Click(object sender, EventArgs e)
+        {
+            MenuTypeAnimAdd menuTypeAdd = new MenuTypeAnimAdd();
+            menuTypeAdd.Show();
         }
     }
 }

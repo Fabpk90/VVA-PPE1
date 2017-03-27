@@ -83,6 +83,12 @@
     <Compile Include="WinForm\FormEncadrant\MenuPlanningAdd.Designer.cs">
       <DependentUpon>MenuPlanningAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuTypeAnimAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormEncadrant\MenuTypeAnimAdd.Designer.cs">
+      <DependentUpon>MenuTypeAnimAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\FormLoisant\MenuLoisant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormEncadrant\MenuPlanningAdd.resx">
       <DependentUpon>MenuPlanningAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormEncadrant\MenuTypeAnimAdd.resx">
+      <DependentUpon>MenuTypeAnimAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\FormLoisant\MenuLoisant.resx">
       <DependentUpon>MenuLoisant.cs</DependentUpon>

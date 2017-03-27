@@ -37,28 +37,21 @@ namespace VVA_PPE1
             if(!string.IsNullOrEmpty(tbUser.Text)
                 && !string.IsNullOrEmpty(tbMdp.Text))
             {
-                if(cbEncadrant.Checked)
+                
+                Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text); 
+                
+                if(encadrant != null)
                 {
-                    Encadrant encadrant = BDDInteraction.getEncadrant(tbUser.Text, tbMdp.Text);                 
+                    MenuEncadrant menu = new MenuEncadrant(encadrant, this);
 
-                    //if found
-                    if(encadrant.Nom != "")
-                    {
-                        MenuEncadrant menu = new MenuEncadrant(encadrant, this);
-
-                        menu.Show();
-                        this.Hide();
-                    }
-                    else
-                        MessageBox.Show("Informations érronées");
-
-
+                    menu.Show();
+                    this.Hide();
                 }
-                else // loisant
+                else
                 {
                     Loisant loisant = BDDInteraction.getLoisant(tbUser.Text, tbMdp.Text);
 
-                    if(loisant.Nom != "")
+                    if(loisant != null)
                     {
                         MenuLoisant menu = new MenuLoisant(loisant, this);
 
@@ -67,8 +60,8 @@ namespace VVA_PPE1
                     }
                     else
                         MessageBox.Show("Informations érronées");
-
                 }
+                              
             }
             else
             {
@@ -80,13 +73,16 @@ namespace VVA_PPE1
         {
             tbMdp.Text = "";
             tbUser.Text = "";
-
-            cbEncadrant.Checked = false;
         }
 
         private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             BDDInteraction.Deconnection();
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

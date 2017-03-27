@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using VVA_PPE1.Modele;
 using VVA_PPE1.Actor;
+using VVA_PPE1.WinForm.FormEncadrant;
 
 namespace VVA_PPE1.WinForm.FormEncandrant
 {
@@ -37,6 +38,18 @@ namespace VVA_PPE1.WinForm.FormEncandrant
             MenuActiviteListe menu = new MenuActiviteListe(enc);
 
             menu.Show();
+        }
+
+        private void btnAddAct_Click(object sender, EventArgs e)
+        {
+            MenuActiviteAdd menuAdd = new MenuActiviteAdd(enc);
+            menuAdd.Show();
+        }
+
+        private void btnAddAnim_Click(object sender, EventArgs e)
+        {
+            MenuAnimationAdd menuAdd = new MenuAnimationAdd();
+            menuAdd.Show();
         }
     }
 }

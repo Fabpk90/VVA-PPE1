@@ -15,10 +15,13 @@ namespace VVA_PPE1.Modele
      * 
      */
 
+        /*
+         *  execute non query != 0 == erreur
+         * */
 
     class BDDInteraction
     {
-        public static string chConn = "server=127.0.0.1;uid=root;pwd=;database=act_vva";
+        public static string chConn = "server=127.0.0.1;uid=root;pwd=;database=act_vva_ppe2";
 
         private static MySqlConnection conn = null;
         private static MySqlCommand cmd = null;
@@ -53,11 +56,11 @@ namespace VVA_PPE1.Modele
 
         internal static Encadrant getEncadrant(string query)
         {
-        cmd.CommandText = query;
+            cmd.CommandText = query;
 
-        rdr = cmd.ExecuteReader();
+            rdr = cmd.ExecuteReader();
 
-        Encadrant enc = new Encadrant();
+            Encadrant enc = null;
 
             //check si il y a un résultat
             if (rdr.Read())
@@ -73,7 +76,7 @@ namespace VVA_PPE1.Modele
         }
 
         /// <summary>
-        /// Check if the loisant is laready iscrit, then inscrit the loisant
+        /// Check if the loisant is laready inscrit, then inscrit the loisant
         /// </summary>
         /// <param name="selectedItem"></param>
         /// <param name="loi"></param>
@@ -143,7 +146,7 @@ namespace VVA_PPE1.Modele
         /// <returns>0 OK -1 already planned -2 query problem</returns>
         public static bool setPlanning(Activite selectedAct, List<Encadrant> listEnc)
         {
-            string query = "";
+            string query = ""; 
 
             foreach (Encadrant enc in listEnc)
             {
@@ -196,13 +199,6 @@ namespace VVA_PPE1.Modele
             }
 
             return found;    
-        }
-
-        public static bool checkIfEncPlannedToday(Encadrant enc)
-        {
-            string query = "";
-
-            return false;
         }
 
         public static List<Encadrant> getEncadrants()
@@ -331,7 +327,8 @@ namespace VVA_PPE1.Modele
 
         public static List<Animation> getAnimations()
         {
-            string query = "SELECT * FROM ANIMATION AS A, TYPE_ANIM AS T WHERE A.CODETYPEANIM = T.CODETYPEANIM";
+            string query = "SELECT * FROM ANIMATION AS A, TYPE_ANIM AS T WHERE A.CODETYPEANIM = T.CODETYPEANIM"+
+                " AND A.DATEVALIDITEANIM > NOW()";
 
             cmd.CommandText = query;
 
@@ -422,7 +419,7 @@ namespace VVA_PPE1.Modele
             return cmd.ExecuteNonQuery() != 0 ? true : false;       
         }
 
-        public static bool isAnimationExists(Animation anim)
+        public static bool checkIfAnimationExists(Animation anim)
         {
             string query = "SELECT CODEANIM FROM ANIMATION WHERE CODEANIM = '" + anim.Code + "'";
 
@@ -452,8 +449,9 @@ namespace VVA_PPE1.Modele
 
         public static List<Activite> getActivites()
         {
-            string query = "SELECT * FROM ACTIVITE AS A, ETAT_ACT AS E"
-              + " WHERE A.CODEETATACT = E.CODEETATACT";
+            string query = "SELECT * FROM ACTIVITE AS A, ETAT_ACT AS E, ANIMATION AS AN"
+              + " WHERE A.CODEETATACT = E.CODEETATACT " +
+              "AND A.CODEANIM = AN.CODEANIM AND AN.DATEVALIDITEANIM >= NOW()";
 
             cmd.CommandText = query;
 
@@ -548,7 +546,7 @@ namespace VVA_PPE1.Modele
             return listAct;
         }
 
-        public static bool isActiviteExist(Activite act)
+        public static bool checkIfActiviteExists(Activite act)
         {
             string query = "SELECT CODEANIM FROM ACTIVITE WHERE DATEACT = '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
 
@@ -654,6 +652,36 @@ namespace VVA_PPE1.Modele
             rdr.Close();
 
             return nbPlace;
+        }
+
+        /// <summary>
+        /// Ajoute un type d'animation après avoir mis les params en maj
+        /// </summary>
+        /// <param name="codeType"></param>
+        /// <param name="nomType"></param>
+        /// <returns>false if fails</returns>
+        public static bool addTypeAnim(string codeType, string nomType)
+        {
+            codeType = codeType.ToUpper();
+            nomType = nomType.ToUpper();
+
+            string query = "INSERT INTO `act_vva_ppe2`.`type_anim` (`CODETYPEANIM`, `NOMTYPEANIM`) VALUES ('" + codeType + "', '" + nomType + "');";
+
+            cmd.CommandText = query;
+
+            return cmd.ExecuteNonQuery() != 0 ? false : true;
+        }
+
+        public static bool checkIfTypeAnimExists(string codeType)
+        {
+            codeType = codeType.ToUpper();
+
+            string query = "SELECT * FROM TYPE_ANIM WHERE CODETYPEANIM = '" + codeType + "'";
+
+            cmd.CommandText = query;
+            rdr = cmd.ExecuteReader();
+
+            return rdr.Read();
         }
     }
 }

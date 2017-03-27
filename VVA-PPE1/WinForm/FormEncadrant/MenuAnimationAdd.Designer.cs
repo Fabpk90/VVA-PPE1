@@ -49,9 +49,9 @@
             this.btnRetour = new System.Windows.Forms.Button();
             this.numDureeAnim = new System.Windows.Forms.NumericUpDown();
             this.cbDifficulteAnim = new System.Windows.Forms.ComboBox();
-            this.cbTypeAnim = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tbCodeAnim = new System.Windows.Forms.TextBox();
+            this.lbCodeTypeAnim = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numLimiteAge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTarifAnim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNbPlace)).BeginInit();
@@ -316,14 +316,6 @@
             this.cbDifficulteAnim.Size = new System.Drawing.Size(112, 21);
             this.cbDifficulteAnim.TabIndex = 30;
             // 
-            // cbTypeAnim
-            // 
-            this.cbTypeAnim.FormattingEnabled = true;
-            this.cbTypeAnim.Location = new System.Drawing.Point(12, 23);
-            this.cbTypeAnim.Name = "cbTypeAnim";
-            this.cbTypeAnim.Size = new System.Drawing.Size(121, 21);
-            this.cbTypeAnim.TabIndex = 31;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -341,14 +333,22 @@
             this.tbCodeAnim.Size = new System.Drawing.Size(100, 20);
             this.tbCodeAnim.TabIndex = 33;
             // 
+            // lbCodeTypeAnim
+            // 
+            this.lbCodeTypeAnim.FormattingEnabled = true;
+            this.lbCodeTypeAnim.Location = new System.Drawing.Point(16, 23);
+            this.lbCodeTypeAnim.Name = "lbCodeTypeAnim";
+            this.lbCodeTypeAnim.Size = new System.Drawing.Size(120, 30);
+            this.lbCodeTypeAnim.TabIndex = 34;
+            // 
             // MenuAnimationAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 438);
+            this.Controls.Add(this.lbCodeTypeAnim);
             this.Controls.Add(this.tbCodeAnim);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.cbTypeAnim);
             this.Controls.Add(this.cbDifficulteAnim);
             this.Controls.Add(this.numDureeAnim);
             this.Controls.Add(this.btnRetour);
@@ -404,8 +404,8 @@
         private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.NumericUpDown numDureeAnim;
         private System.Windows.Forms.ComboBox cbDifficulteAnim;
-        private System.Windows.Forms.ComboBox cbTypeAnim;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbCodeAnim;
+        private System.Windows.Forms.ListBox lbCodeTypeAnim;
     }
 }

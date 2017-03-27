@@ -31,6 +31,8 @@
             this.btnListeAnim = new System.Windows.Forms.Button();
             this.btnListeActivite = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAddAct = new System.Windows.Forms.Button();
+            this.btnAddAnim = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnListeAnim
@@ -45,7 +47,7 @@
             // 
             // btnListeActivite
             // 
-            this.btnListeActivite.Location = new System.Drawing.Point(77, 214);
+            this.btnListeActivite.Location = new System.Drawing.Point(77, 234);
             this.btnListeActivite.Name = "btnListeActivite";
             this.btnListeActivite.Size = new System.Drawing.Size(173, 23);
             this.btnListeActivite.TabIndex = 1;
@@ -63,11 +65,33 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Menu Encadrant";
             // 
+            // btnAddAct
+            // 
+            this.btnAddAct.Location = new System.Drawing.Point(77, 263);
+            this.btnAddAct.Name = "btnAddAct";
+            this.btnAddAct.Size = new System.Drawing.Size(173, 23);
+            this.btnAddAct.TabIndex = 3;
+            this.btnAddAct.Text = "Ajouter une Activité";
+            this.btnAddAct.UseVisualStyleBackColor = true;
+            this.btnAddAct.Click += new System.EventHandler(this.btnAddAct_Click);
+            // 
+            // btnAddAnim
+            // 
+            this.btnAddAnim.Location = new System.Drawing.Point(77, 173);
+            this.btnAddAnim.Name = "btnAddAnim";
+            this.btnAddAnim.Size = new System.Drawing.Size(173, 23);
+            this.btnAddAnim.TabIndex = 4;
+            this.btnAddAnim.Text = "Ajouter une Animation";
+            this.btnAddAnim.UseVisualStyleBackColor = true;
+            this.btnAddAnim.Click += new System.EventHandler(this.btnAddAnim_Click);
+            // 
             // MenuEncadrant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 325);
+            this.Controls.Add(this.btnAddAnim);
+            this.Controls.Add(this.btnAddAct);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnListeActivite);
             this.Controls.Add(this.btnListeAnim);
@@ -84,5 +108,7 @@
         private System.Windows.Forms.Button btnListeAnim;
         private System.Windows.Forms.Button btnListeActivite;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAddAct;
+        private System.Windows.Forms.Button btnAddAnim;
     }
 }

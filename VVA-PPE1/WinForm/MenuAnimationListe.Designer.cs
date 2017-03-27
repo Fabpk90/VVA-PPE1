@@ -34,6 +34,7 @@
             this.btnModify = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
             this.btnPlanning = new System.Windows.Forms.Button();
+            this.btnAddType = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBAnim
@@ -59,7 +60,7 @@
             // 
             // btnAddMenu
             // 
-            this.btnAddMenu.Location = new System.Drawing.Point(498, 489);
+            this.btnAddMenu.Location = new System.Drawing.Point(462, 489);
             this.btnAddMenu.Name = "btnAddMenu";
             this.btnAddMenu.Size = new System.Drawing.Size(75, 23);
             this.btnAddMenu.TabIndex = 10;
@@ -69,7 +70,7 @@
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(418, 489);
+            this.btnModify.Location = new System.Drawing.Point(381, 489);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(75, 23);
             this.btnModify.TabIndex = 11;
@@ -88,19 +89,30 @@
             // 
             // btnPlanning
             // 
-            this.btnPlanning.Location = new System.Drawing.Point(287, 489);
+            this.btnPlanning.Location = new System.Drawing.Point(263, 489);
             this.btnPlanning.Name = "btnPlanning";
-            this.btnPlanning.Size = new System.Drawing.Size(125, 23);
+            this.btnPlanning.Size = new System.Drawing.Size(112, 23);
             this.btnPlanning.TabIndex = 26;
             this.btnPlanning.Text = "Planning de l\'activité";
             this.btnPlanning.UseVisualStyleBackColor = true;
             this.btnPlanning.Click += new System.EventHandler(this.btnPlanning_Click);
+            // 
+            // btnAddType
+            // 
+            this.btnAddType.Location = new System.Drawing.Point(381, 460);
+            this.btnAddType.Name = "btnAddType";
+            this.btnAddType.Size = new System.Drawing.Size(156, 23);
+            this.btnAddType.TabIndex = 27;
+            this.btnAddType.Text = "Ajouter un Type d\'animation";
+            this.btnAddType.UseVisualStyleBackColor = true;
+            this.btnAddType.Click += new System.EventHandler(this.btnAddType_Click);
             // 
             // MenuAnimationListe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 524);
+            this.Controls.Add(this.btnAddType);
             this.Controls.Add(this.btnPlanning);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.btnModify);
@@ -123,5 +135,6 @@
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Button btnPlanning;
+        private System.Windows.Forms.Button btnAddType;
     }
 }

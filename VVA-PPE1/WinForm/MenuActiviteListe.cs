@@ -16,7 +16,7 @@ namespace VVA_PPE1.WinForm
 {
     public partial class MenuActiviteListe : Form
     {
-        private Encadrant enc;
+        private Encadrant enc= null;
 
         private List<Encadrant> listEnc = BDDInteraction.getEncadrants();
 
@@ -27,6 +27,8 @@ namespace VVA_PPE1.WinForm
             btnPlanAct.Visible = false;
             btnAdd.Visible = false;
             btnEdit.Visible = false;
+
+           
         }
 
         public MenuActiviteListe( Encadrant enc)
@@ -42,6 +44,23 @@ namespace VVA_PPE1.WinForm
             if(listBAct.Items.Count != 0)
             {
                 listBAct.SelectedIndex = 0;
+            }
+            else
+            {
+                if(enc == null)
+                {
+                    MessageBox.Show("Aucune activités disponible");
+                    this.Close();
+                }
+                else
+                {
+                    lblDesc.Text = "Aucune Activité";
+                    lblDescEnc.Text = "Aucune Activité";
+
+                    btnEdit.Visible = false;
+                    btnPlanAct.Visible = false;
+                }
+                
             }
         }
 
@@ -89,15 +108,21 @@ namespace VVA_PPE1.WinForm
 
         private void btnPlanAct_Click(object sender, EventArgs e)
         {
-            if(listBAct.SelectedIndex != -1)
+            if(listBAct.Items.Count != 0)
             {
-                MenuPlanningAdd planning = new MenuPlanningAdd((Activite)listBAct.SelectedItem, enc, this);
+                if (listBAct.SelectedIndex != -1)
+                {
+                    MenuPlanningAdd planning = new MenuPlanningAdd((Activite)listBAct.SelectedItem, enc, this);
 
-                this.Hide();
-                planning.Show();
+                    this.Hide();
+                    planning.Show();
+                }
+                else
+                    MessageBox.Show("Séléctionner une activité");
             }
             else
-                MessageBox.Show("Séléctionner une activité");
+                MessageBox.Show("Aucune activité disponible");
+
         }
     }
 }
