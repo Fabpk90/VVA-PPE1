@@ -232,6 +232,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "MenuActiviteAdd";
+            this.ShowIcon = false;
             this.Text = "MenuActiviteAdd";
             this.Load += new System.EventHandler(this.MenuActiviteAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPrix)).EndInit();

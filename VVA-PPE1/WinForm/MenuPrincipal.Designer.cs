@@ -114,6 +114,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MenuPrincipal";
+            this.ShowIcon = false;
             this.Text = "Menu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);

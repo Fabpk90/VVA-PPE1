@@ -120,6 +120,7 @@
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.listBAnim);
             this.Name = "MenuAnimationListe";
+            this.ShowIcon = false;
             this.Text = "MenuAnimationListe";
             this.Load += new System.EventHandler(this.MenuAnimationListe_Load);
             this.ResumeLayout(false);

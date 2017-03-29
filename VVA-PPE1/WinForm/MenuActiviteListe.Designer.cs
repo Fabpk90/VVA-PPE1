@@ -117,6 +117,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBAct);
             this.Name = "MenuActiviteListe";
+            this.ShowIcon = false;
             this.Text = "MenuActiviteListe";
             this.Load += new System.EventHandler(this.MenuActiviteListe_Load);
             this.ResumeLayout(false);

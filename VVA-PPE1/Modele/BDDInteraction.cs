@@ -430,7 +430,7 @@ namespace VVA_PPE1.Modele
             bool Exists = rdr.Read();
             rdr.Close();
 
-            return Exists ? true : false;
+            return Exists;
         }
 
         public static bool modifyAnimation(Animation newAnim)

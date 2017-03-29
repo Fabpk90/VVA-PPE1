@@ -50,7 +50,7 @@
             this.btnListeActivite.Location = new System.Drawing.Point(77, 234);
             this.btnListeActivite.Name = "btnListeActivite";
             this.btnListeActivite.Size = new System.Drawing.Size(173, 23);
-            this.btnListeActivite.TabIndex = 1;
+            this.btnListeActivite.TabIndex = 2;
             this.btnListeActivite.Text = "Voir la liste des activités";
             this.btnListeActivite.UseVisualStyleBackColor = true;
             this.btnListeActivite.Click += new System.EventHandler(this.btnListeActivite_Click);
@@ -80,7 +80,7 @@
             this.btnAddAnim.Location = new System.Drawing.Point(77, 173);
             this.btnAddAnim.Name = "btnAddAnim";
             this.btnAddAnim.Size = new System.Drawing.Size(173, 23);
-            this.btnAddAnim.TabIndex = 4;
+            this.btnAddAnim.TabIndex = 1;
             this.btnAddAnim.Text = "Ajouter une Animation";
             this.btnAddAnim.UseVisualStyleBackColor = true;
             this.btnAddAnim.Click += new System.EventHandler(this.btnAddAnim_Click);
@@ -96,6 +96,7 @@
             this.Controls.Add(this.btnListeActivite);
             this.Controls.Add(this.btnListeAnim);
             this.Name = "MenuEncadrant";
+            this.ShowIcon = false;
             this.Text = "MenuEncadrant";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MenuEncadrant_FormClosed);
             this.ResumeLayout(false);
