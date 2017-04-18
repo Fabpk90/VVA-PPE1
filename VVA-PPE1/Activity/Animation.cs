@@ -23,7 +23,7 @@ namespace VVA_PPE1.Activity
         private DateTime dtValidite;
 
         //durée en minutes
-        private uint duree;
+        private int duree;
 
         private int limiteAge;
 
@@ -141,7 +141,7 @@ namespace VVA_PPE1.Activity
             }
         }
 
-        public uint Duree
+        public int Duree
         {
             get
             {
@@ -195,7 +195,7 @@ namespace VVA_PPE1.Activity
 
         public Animation() { }
 
-        public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, string commentaire, EdiffAnim difficulte)
+        public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int duree, int limiteAge, float tarif, int nbPlace, string desc, string commentaire, EdiffAnim difficulte)
         {
             this.codeAnim = code;
 
@@ -203,6 +203,8 @@ namespace VVA_PPE1.Activity
 
             this.dtCreation = dtCreation;
             this.dtValidite = dtValidite;
+
+            this.duree = duree;
 
             this.limiteAge = limiteAge;
             this.tarif = tarif;
@@ -217,9 +219,9 @@ namespace VVA_PPE1.Activity
             animType = new Animation_Type();
         }
 
-        public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int limiteAge, float tarif, int nbPlace, string desc, 
+        public Animation(string code, string nom, DateTime dtCreation, DateTime dtValidite, int duree, int limiteAge, float tarif, int nbPlace, string desc, 
             string commentaire, EdiffAnim difficulte, string codeAnim, string nomAnim) 
-            : this(code, nom, dtCreation, dtValidite, limiteAge, tarif, nbPlace, desc, commentaire, difficulte)
+            : this(code, nom, dtCreation, dtValidite, duree, limiteAge, tarif, nbPlace, desc, commentaire, difficulte)
         {
             animType = new Animation_Type(codeAnim, nomAnim);
         }

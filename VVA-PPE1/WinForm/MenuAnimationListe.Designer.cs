@@ -32,9 +32,9 @@
             this.lblMenu = new System.Windows.Forms.Label();
             this.btnAddMenu = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
-            this.lblDescription = new System.Windows.Forms.Label();
             this.btnPlanning = new System.Windows.Forms.Button();
             this.btnAddType = new System.Windows.Forms.Button();
+            this.rtDesc = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // listBAnim
@@ -51,7 +51,7 @@
             // 
             this.lblMenu.AutoSize = true;
             this.lblMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenu.Location = new System.Drawing.Point(122, 39);
+            this.lblMenu.Location = new System.Drawing.Point(160, 46);
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(312, 24);
             this.lblMenu.TabIndex = 1;
@@ -78,15 +78,6 @@
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(358, 189);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(35, 13);
-            this.lblDescription.TabIndex = 25;
-            this.lblDescription.Text = "label3";
-            // 
             // btnPlanning
             // 
             this.btnPlanning.Location = new System.Drawing.Point(263, 489);
@@ -107,14 +98,23 @@
             this.btnAddType.UseVisualStyleBackColor = true;
             this.btnAddType.Click += new System.EventHandler(this.btnAddType_Click);
             // 
+            // rtDesc
+            // 
+            this.rtDesc.Location = new System.Drawing.Point(308, 189);
+            this.rtDesc.Name = "rtDesc";
+            this.rtDesc.Size = new System.Drawing.Size(330, 183);
+            this.rtDesc.TabIndex = 28;
+            this.rtDesc.Text = "";
+            this.rtDesc.Visible = false;
+            // 
             // MenuAnimationListe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 524);
+            this.ClientSize = new System.Drawing.Size(642, 524);
+            this.Controls.Add(this.rtDesc);
             this.Controls.Add(this.btnAddType);
             this.Controls.Add(this.btnPlanning);
-            this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnAddMenu);
             this.Controls.Add(this.lblMenu);
@@ -134,8 +134,8 @@
         private System.Windows.Forms.Label lblMenu;
         private System.Windows.Forms.Button btnAddMenu;
         private System.Windows.Forms.Button btnModify;
-        private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Button btnPlanning;
         private System.Windows.Forms.Button btnAddType;
+        private System.Windows.Forms.RichTextBox rtDesc;
     }
 }

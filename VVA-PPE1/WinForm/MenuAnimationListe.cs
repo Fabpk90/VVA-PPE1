@@ -52,7 +52,8 @@ namespace VVA_PPE1.WinForm
             {
                 Animation anim = ((Animation)listBAnim.SelectedItem);
 
-                lblDescription.Text = anim.getDescription();                       
+                rtDesc.Visible = true;
+                rtDesc.Text = anim.getDescription();
             }
         }
 
@@ -105,7 +106,7 @@ namespace VVA_PPE1.WinForm
             }
             else
             {
-                lblDescription.Text = "";
+                rtDesc.Visible = false;
             }
 
         }

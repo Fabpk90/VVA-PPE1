@@ -277,15 +277,14 @@
             // 
             // numDureeAnim
             // 
-            this.numDureeAnim.DecimalPlaces = 2;
             this.numDureeAnim.Increment = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
-            131072});
+            0});
             this.numDureeAnim.Location = new System.Drawing.Point(16, 235);
             this.numDureeAnim.Maximum = new decimal(new int[] {
-            240,
+            300,
             0,
             0,
             0});
@@ -293,7 +292,7 @@
             10,
             0,
             0,
-            131072});
+            0});
             this.numDureeAnim.Name = "numDureeAnim";
             this.numDureeAnim.Size = new System.Drawing.Size(60, 20);
             this.numDureeAnim.TabIndex = 29;
@@ -302,11 +301,13 @@
             10,
             0,
             0,
-            131072});
+            0});
             // 
             // cbDifficulteAnim
             // 
+            this.cbDifficulteAnim.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDifficulteAnim.FormattingEnabled = true;
+            this.cbDifficulteAnim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cbDifficulteAnim.Items.AddRange(new object[] {
             "FACILE",
             "NORMAL",

@@ -349,7 +349,7 @@ namespace VVA_PPE1.Modele
                 anim.DtCreation = DateTime.Parse(rdr.GetString("DATECREATIONANIM"));
                 anim.DtValidite = DateTime.Parse(rdr.GetString("DATEVALIDITEANIM"));
 
-                anim.Duree = rdr.GetUInt32("DUREEANIM");
+                anim.Duree = rdr.GetInt32("DUREEANIM");
                 anim.LimiteAge = rdr.GetInt32("LIMITEAGE");
                 anim.Tarif = rdr.GetFloat("TARIFANIM");
 
@@ -410,9 +410,9 @@ namespace VVA_PPE1.Modele
         {
             string query = "INSERT INTO ANIMATION(CODEANIM, CODETYPEANIM, NOMANIM, DATECREATIONANIM, DATEVALIDITEANIM"
                 +", DUREEANIM, LIMITEAGE, TARIFANIM, NBREPLACEANIM, DESCRIPTANIM, COMMENTANIM, DIFFICULTEANIM) "
-                + "VALUES('"+anim.Code+ "', '" + anim.AnimType.Code + "','" + anim.Nom + "','" + anim.DtCreation.ToString("yyyy-MM-dd HH:mm:ss.fff") +
+                + "VALUES('"+anim.Code+ "', '" + anim.AnimType.Code + "','" + anim.Nom.Replace('\'', ' ') + "','" + anim.DtCreation.ToString("yyyy-MM-dd HH:mm:ss.fff") +
                 "', '" + anim.DtValidite.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', " + anim.Duree.ToString().Replace(",", ".") + ", " + anim.LimiteAge + ", " + anim.Tarif.ToString().Replace(",", ".") +
-                ", " + anim.NbPlace + ", '" + anim.Desc + "', '" + anim.Commentaire + "', " + (int) anim.Difficulte + ")";
+                ", " + anim.NbPlace + ", '" + anim.Desc.Replace('\'', ' ') + "', '" + anim.Commentaire.Replace('\'', ' ') + "', " + (int) anim.Difficulte + ")";
 
             cmd.CommandText = query;
 
@@ -564,7 +564,7 @@ namespace VVA_PPE1.Modele
         {
             string query = "INSERT INTO ACTIVITE(CODEANIM, DATEACT, NOENCADRANT, CODEETATACT, HRRDVACT, PRIXACT, HRDEBUTACT, HRFINACT, OBJECTIFACT)"
               + "VALUES('" + act.Code + "', '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', '" + act.NoEncadrant + "','" + act.Etat.Code + "', '" + act.HrRDV + "',"
-             + " " + act.Prix.ToString().Replace(',', '.') + ", '" + act.HrDebut + "', '" + act.HrFin + "', '" + act.Objectif + "')";
+             + " " + act.Prix.ToString().Replace(',', '.') + ", '" + act.HrDebut + "', '" + act.HrFin + "', '" + act.Objectif.Replace('\'', ' ') + "')";
 
 
             cmd.CommandText = query;
@@ -681,7 +681,10 @@ namespace VVA_PPE1.Modele
             cmd.CommandText = query;
             rdr = cmd.ExecuteReader();
 
-            return rdr.Read();
+            bool ok = rdr.Read();
+            rdr.Close();
+
+            return ok;
         }
     }
 }

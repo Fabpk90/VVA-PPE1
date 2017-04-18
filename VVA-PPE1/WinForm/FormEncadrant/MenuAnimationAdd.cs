@@ -66,14 +66,13 @@ namespace VVA_PPE1.WinForm.FormEncadrant
             if(dtValiditeAnim.Value > DateTime.Now)
             {
                 //creates the animation based on the form
-                Animation anim = new Animation(tbCodeAnim.Text, tbNomAnim.Text, DateTime.Now, dtValiditeAnim.Value, (int)numLimiteAge.Value, (float)numTarifAnim.Value
+                Animation anim = new Animation(tbCodeAnim.Text, tbNomAnim.Text, DateTime.Now, dtValiditeAnim.Value,(int) numDureeAnim.Value, (int)numLimiteAge.Value, (float)numTarifAnim.Value
                        , (int)numNbPlace.Value, rbDescAnim.Text, rbCommAnim.Text, (EdiffAnim)cbDifficulteAnim.SelectedIndex,
                        ((Animation_Type)lbCodeTypeAnim.SelectedItem).Code, ((Animation_Type)lbCodeTypeAnim.SelectedItem).Nom);
 
                 //if the user is not modifying an animation
                 if (selectedAnim == null)
                 {
-
                     anim.AnimType = (Animation_Type)lbCodeTypeAnim.SelectedItem;
 
                     if (!BDDInteraction.checkIfAnimationExists(anim))
