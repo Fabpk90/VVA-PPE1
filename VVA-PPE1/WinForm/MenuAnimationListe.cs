@@ -37,6 +37,7 @@ namespace VVA_PPE1.WinForm
 
             btnAddMenu.Visible = false;
             btnModify.Visible = false;
+            btnAddType.Visible = false;
             
         }
 

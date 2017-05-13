@@ -168,11 +168,24 @@ namespace VVA_PPE1.WinForm
             //if this is the loiasnt asking for the cancel
             if(loi != null)
             {
-                BDDInteraction.cancelInscription(loi, (int)numInscription.Value);
+                if(BDDInteraction.cancelInscription(loi, (int)numInscription.Value))
+                {
+                    MessageBox.Show("Loisant désinscrit!");
+                    nbPlace++;
+                    lblPlaces.Text = "Places disponibles: " + nbPlace;
+                    updateDesign();
+                }
+                   
             }
             else if( listBLoisant.SelectedIndex != -1)
             {
-                BDDInteraction.cancelInscription((Loisant)listBLoisant.SelectedItem, (int)numInscription.Value);
+                if (BDDInteraction.cancelInscription((Loisant)listBLoisant.SelectedItem, (int)numInscription.Value))
+                {
+                    MessageBox.Show("Loisant désinscrit");
+                    nbPlace++;
+                    lblPlaces.Text = "Places disponibles: " + nbPlace;
+                    updateDesign();
+                }
             }
             else
                 MessageBox.Show("Impossible d'annuler l'inscription, vérifier les informations fournies");

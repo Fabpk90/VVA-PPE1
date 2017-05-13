@@ -180,7 +180,7 @@
             this.btnCancelInscip.Name = "btnCancelInscip";
             this.btnCancelInscip.Size = new System.Drawing.Size(102, 23);
             this.btnCancelInscip.TabIndex = 21;
-            this.btnCancelInscip.Text = "Annuler iscription";
+            this.btnCancelInscip.Text = "Annuler inscription";
             this.btnCancelInscip.UseVisualStyleBackColor = true;
             this.btnCancelInscip.Click += new System.EventHandler(this.btnCancelInscip_Click);
             // 

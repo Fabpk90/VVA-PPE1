@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VVA_PPE1.Activity.Activite" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAEMAAQhCAJEIABCAAABQQCAAQFAgAA=</HashCode>
+      <FileName>Activity\Activite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Activity.Activite_Etat" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAgIAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activity\Activite_Etat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Activity.Animation" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAIUDAACBAwAAAEAAAgIAEAADBBAABBYAAAQCAAAEA=</HashCode>
+      <FileName>Activity\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Activity.Animation_Type" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAgIAAAICAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Activity\Animation_Type.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Activity.Inscription" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAARAAAAEQAAAAAABAAEAAQABAAA=</HashCode>
+      <FileName>Activity\Inscription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Actor.Encadrant" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAAAAAAAAAAAgAAAAAABQAAAAU=</HashCode>
+      <FileName>Actor\Encadrant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Actor.Inscrit" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAIAAAACAAIAAAACEAAAABABA=</HashCode>
+      <FileName>Actor\Inscrit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Actor.Loisant" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAgAgAAAAAAAEAAAAACACAAAgAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actor\Loisant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Actor.Profil" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICAAACAAAAAAAAgAAAAAAAAAAAAAgAAAAIAAAAQgAAA=</HashCode>
+      <FileName>Actor\Profil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Modele.BDDInteraction" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAoGAAAIAAsAUAQAFAAAEUAAwAIQAAgHIIgAEBABA=</HashCode>
+      <FileName>Modele\BDDInteraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Program" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.MenuPrincipal" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAggAAACAAABAAAACAAGACAAEAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>WinForm\MenuPrincipal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Properties.Resources" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.Properties.Settings" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.FormEncadrant.MenuActiviteAdd" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACASAAgBAAAACIBQACAAAAgAAAAIACAAAQARo=</HashCode>
+      <FileName>WinForm\FormEncadrant\MenuActiviteAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.FormEncadrant.MenuAnimationAdd" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MSAgAACABKAFwBAAAACAQAACEAAAgACBAkAAAAAAAAI=</HashCode>
+      <FileName>WinForm\FormEncadrant\MenuAnimationAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.FormEncadrant.MenuPlanningAdd" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEAAAAACICAAEBAAABCAAAACAAAAAAAAAAAAABAAAJA=</HashCode>
+      <FileName>WinForm\FormEncadrant\MenuPlanningAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.FormEncadrant.MenuTypeAnimAdd" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAAgBAAAACAAAACAAAAgAAACAAAAAAAAAI=</HashCode>
+      <FileName>WinForm\FormEncadrant\MenuTypeAnimAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.FormEncandrant.MenuEncadrant" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACACAABLAAAACCAAACAgAAACQAAAAgAAIQAAA=</HashCode>
+      <FileName>WinForm\FormEncadrant\MenuEncadrant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.FormLoisant.MenuLoisant" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAACAAAJAAAACACAACAAEAgAAAAAAEAAAAAAA=</HashCode>
+      <FileName>WinForm\FormLoisant\MenuLoisant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.MenuActiviteListe" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAACACAAABABgACBAAACAAgAiAABAQAAAAAIABI=</HashCode>
+      <FileName>WinForm\MenuActiviteListe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.MenuAnimationListe" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAKQCAAAAgIAAKACAACBEAoIBAAAEAACAAAQAA=</HashCode>
+      <FileName>WinForm\MenuAnimationListe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VVA_PPE1.WinForm.MenuPlanningView" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBIggAECACAAABBBIACASAECAEABCBAIhQACAAABAAA=</HashCode>
+      <FileName>WinForm\MenuPlanningView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="VVA_PPE1.Activity.EdiffAnim" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAACAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Activity\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VVA_PPE1.Actor.EtypeProfil" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAg=</HashCode>
+      <FileName>Actor\Profil.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

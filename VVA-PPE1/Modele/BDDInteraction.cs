@@ -76,7 +76,7 @@ namespace VVA_PPE1.Modele
         }
 
         /// <summary>
-        /// Check if the loisant is laready inscrit, then inscrit the loisant
+        /// Check if the loisant is already inscrit, then inscrit the loisant
         /// </summary>
         /// <param name="selectedItem"></param>
         /// <param name="loi"></param>
@@ -86,6 +86,7 @@ namespace VVA_PPE1.Modele
         /// <returns></returns>
         public static bool inscription(Activite selectedItem, Loisant loi, Encadrant enc,string remarque, out int nbInscription)
         {
+            nbInscription = 0;
 
             string query = "SELECT NOLOISANT FROM INSCRIPTION"
                 + " WHERE NOLOISANT = " + loi.Numero + " AND CODEANIM = '" + selectedItem.Code + "' AND DATEACT = '" + selectedItem.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'"
@@ -93,17 +94,23 @@ namespace VVA_PPE1.Modele
 
             cmd.CommandText = query;
 
-            if (cmd.ExecuteNonQuery() != 0)
+            rdr = cmd.ExecuteReader();      
+
+            //check if the loisant is already inscrit
+            if (rdr.Read())
             {
+                rdr.Close();
+
                 nbInscription = -1;
                 return false;
             }
 
-            
-            nbInscription = getInscriptionNb(loi);
+            rdr.Close();
+
+            nbInscription = getInscriptionNb(loi) + 1;
 
              query = "INSERT INTO INSCRIPTION(NOLOISANT, NOINSCRIP, CODEANIM, DATEACT, DATEINSCRIP, REMARQUEINSCRIP)"
-                + " VALUES('" + loi.Numero + "', " + (nbInscription + 1) + ", '" + selectedItem.Code + "', "
+                + " VALUES('" + loi.Numero + "', " + (nbInscription) + ", '" + selectedItem.Code + "', "
                 + " '" + selectedItem.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "', NOW(), '')"; 
 
             cmd.CommandText = query;
@@ -239,7 +246,7 @@ namespace VVA_PPE1.Modele
             string query = "SELECT * FROM LOISANT AS L, PROFIL AS P"
                + " WHERE L.USER = P.USER AND P.USER = '" + user + "' AND P.MDP = '" + mdp + "'";
 
-            Loisant loi = new Loisant();
+            Loisant loi = null;
 
             cmd.CommandText = query;
 
@@ -450,7 +457,7 @@ namespace VVA_PPE1.Modele
         public static List<Activite> getActivites()
         {
             string query = "SELECT * FROM ACTIVITE AS A, ETAT_ACT AS E, ANIMATION AS AN"
-              + " WHERE A.CODEETATACT = E.CODEETATACT " +
+              + " WHERE A.DATEACT > NOW() AND A.CODEETATACT = E.CODEETATACT " +
               "AND A.CODEANIM = AN.CODEANIM AND AN.DATEVALIDITEANIM >= NOW()";
 
             cmd.CommandText = query;
@@ -589,9 +596,10 @@ namespace VVA_PPE1.Modele
 
         public static List<Activite> getPlanningAnim(Animation anim)
         {
+
             //get act + etatAct depending on anim 
             string query = "SELECT * FROM ACTIVITE AS A, ANIMATION AS AN, ETAT_ACT AS E"
-                + " WHERE A.CODEANIM = '" + anim.Code + "' AND A.CODEANIM = AN.CODEANIM AND A.CODEETATACT = E.CODEETATACT "
+                + " WHERE A.DATEACT > NOW() AND A.CODEANIM = '" + anim.Code + "' AND A.CODEANIM = AN.CODEANIM AND A.CODEETATACT = E.CODEETATACT "
                 + " AND DATEANNULATIONACT IS NULL";
 
             cmd.CommandText = query;
@@ -634,24 +642,39 @@ namespace VVA_PPE1.Modele
             return listAct;
         }
 
+        public static int getNbInscription(Animation anim)
+        {
+            string query = "SELECT COUNT(*) AS NBINSCRI " +
+              "FROM INSCRIPTION " +
+               "WHERE CODEANIM = '" + anim.Code + "' AND DATE_ANNULATION IS NULL ";
+
+            cmd.CommandText = query;
+
+            rdr = cmd.ExecuteReader();
+            rdr.Read();
+
+            int nbInscri = rdr.GetInt32("NBINSCRI");
+
+            rdr.Close();
+
+            return nbInscri;
+        }
+
         public static int getNbPlace(Animation anim)
         {
-            string query = "SELECT (NBREPLACEANIM - COUNT(NOINSCRIP)) AS NBPLACESLIBRES FROM ANIMATION AS A, INSCRIPTION AS I"
-                + " WHERE A.CODEANIM = '"+anim.Code+"' AND A.CODEANIM = I.CODEANIM AND I.DATE_ANNULATION IS NULL"
-                +" GROUP BY A.CODEANIM";
+            string query = "SELECT (NBREPLACEANIM) AS NBPLACES FROM ANIMATION AS A"
+                + " WHERE A.CODEANIM = '"+anim.Code+"' ";
 
             cmd.CommandText = query;
 
             rdr = cmd.ExecuteReader();
 
-            int nbPlace = -1;
-
-            if (rdr.Read())
-                nbPlace = rdr.GetInt32("NBPLACESLIBRES");
+            rdr.Read();
+            int nbPlace = rdr.GetInt32("NBPLACES");
 
             rdr.Close();
 
-            return nbPlace;
+            return nbPlace - getNbInscription(anim);
         }
 
         /// <summary>
