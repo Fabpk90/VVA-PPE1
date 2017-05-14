@@ -31,13 +31,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnVoirActivite = new System.Windows.Forms.Button();
             this.btnVoirAnimation = new System.Windows.Forms.Button();
+            this.btnRetour = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 28);
+            this.label1.Location = new System.Drawing.Point(51, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(284, 25);
             this.label1.TabIndex = 0;
@@ -45,7 +46,7 @@
             // 
             // btnVoirActivite
             // 
-            this.btnVoirActivite.Location = new System.Drawing.Point(79, 216);
+            this.btnVoirActivite.Location = new System.Drawing.Point(197, 103);
             this.btnVoirActivite.Name = "btnVoirActivite";
             this.btnVoirActivite.Size = new System.Drawing.Size(179, 23);
             this.btnVoirActivite.TabIndex = 1;
@@ -55,7 +56,7 @@
             // 
             // btnVoirAnimation
             // 
-            this.btnVoirAnimation.Location = new System.Drawing.Point(79, 144);
+            this.btnVoirAnimation.Location = new System.Drawing.Point(12, 103);
             this.btnVoirAnimation.Name = "btnVoirAnimation";
             this.btnVoirAnimation.Size = new System.Drawing.Size(179, 23);
             this.btnVoirAnimation.TabIndex = 2;
@@ -63,17 +64,29 @@
             this.btnVoirAnimation.UseVisualStyleBackColor = true;
             this.btnVoirAnimation.Click += new System.EventHandler(this.btnVoirAnimation_Click);
             // 
+            // btnRetour
+            // 
+            this.btnRetour.Location = new System.Drawing.Point(12, 145);
+            this.btnRetour.Name = "btnRetour";
+            this.btnRetour.Size = new System.Drawing.Size(75, 23);
+            this.btnRetour.TabIndex = 3;
+            this.btnRetour.Text = "Retour";
+            this.btnRetour.UseVisualStyleBackColor = true;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
+            // 
             // MenuLoisant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 311);
+            this.ClientSize = new System.Drawing.Size(388, 180);
+            this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.btnVoirAnimation);
             this.Controls.Add(this.btnVoirActivite);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MenuLoisant";
             this.ShowIcon = false;
-            this.Text = "MenuLoisant";
+            this.Text = "Menu Loisant";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuLoisant_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,5 +98,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnVoirActivite;
         private System.Windows.Forms.Button btnVoirAnimation;
+        private System.Windows.Forms.Button btnRetour;
     }
 }

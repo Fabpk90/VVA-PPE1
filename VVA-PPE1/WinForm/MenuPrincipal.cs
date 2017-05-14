@@ -59,13 +59,13 @@ namespace VVA_PPE1
                         this.Hide();
                     }
                     else
-                        MessageBox.Show("Informations érronées");
+                        MessageBox.Show("Informations érronées", "Informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                               
             }
             else
             {
-                MessageBox.Show("Veuillez renseignez tout les champs");
+                MessageBox.Show("Veuillez renseignez tout les champs","Informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

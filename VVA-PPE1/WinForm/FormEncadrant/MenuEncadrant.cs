@@ -51,5 +51,13 @@ namespace VVA_PPE1.WinForm.FormEncandrant
             MenuAnimationAdd menuAdd = new MenuAnimationAdd();
             menuAdd.Show();
         }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            menuPrincipal.resetFields();
+            menuPrincipal.Show();
+
+            this.Close();
+        }
     }
 }

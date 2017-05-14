@@ -42,7 +42,7 @@
             this.listBAct.FormattingEnabled = true;
             this.listBAct.Location = new System.Drawing.Point(12, 86);
             this.listBAct.Name = "listBAct";
-            this.listBAct.Size = new System.Drawing.Size(248, 498);
+            this.listBAct.Size = new System.Drawing.Size(248, 342);
             this.listBAct.TabIndex = 0;
             this.listBAct.SelectedIndexChanged += new System.EventHandler(this.listBAct_SelectedIndexChanged);
             // 
@@ -52,15 +52,15 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(171, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 24);
+            this.label1.Size = new System.Drawing.Size(146, 24);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Menu Activité";
+            this.label1.Text = "Menu Activités";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(449, 530);
+            this.btnAdd.Location = new System.Drawing.Point(449, 391);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 53);
+            this.btnAdd.Size = new System.Drawing.Size(75, 37);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Ajouter";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -68,9 +68,9 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(368, 530);
+            this.btnEdit.Location = new System.Drawing.Point(368, 391);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 53);
+            this.btnEdit.Size = new System.Drawing.Size(75, 37);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Modifier";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -96,11 +96,11 @@
             // 
             // btnPlanAct
             // 
-            this.btnPlanAct.Location = new System.Drawing.Point(267, 530);
+            this.btnPlanAct.Location = new System.Drawing.Point(267, 391);
             this.btnPlanAct.Name = "btnPlanAct";
-            this.btnPlanAct.Size = new System.Drawing.Size(95, 53);
+            this.btnPlanAct.Size = new System.Drawing.Size(95, 37);
             this.btnPlanAct.TabIndex = 6;
-            this.btnPlanAct.Text = "Géré les activités";
+            this.btnPlanAct.Text = "Gérer les activités";
             this.btnPlanAct.UseVisualStyleBackColor = true;
             this.btnPlanAct.Click += new System.EventHandler(this.btnPlanAct_Click);
             // 
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 595);
+            this.ClientSize = new System.Drawing.Size(536, 435);
             this.Controls.Add(this.btnPlanAct);
             this.Controls.Add(this.lblDescEnc);
             this.Controls.Add(this.lblDesc);

@@ -24,12 +24,16 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
             dtValiditeAnim.Value = DateTime.Now.AddDays(1);
 
-            lbCodeTypeAnim.Items.AddRange(BDDInteraction.getAnimType().ToArray());
+            cbTypeAnim.Items.AddRange(BDDInteraction.getAnimType().ToArray());
 
-            if (lbCodeTypeAnim.Items.Count != 0)
+            if (cbTypeAnim.Items.Count != 0)
             {
-                lbCodeTypeAnim.SelectedIndex = 0;
+                cbTypeAnim.SelectedIndex = 0;
             }
+
+            //check if the difficulty has been set
+            if (cbDifficulteAnim.SelectedIndex == -1)
+                cbDifficulteAnim.SelectedIndex = 0;
         }
 
         public MenuAnimationAdd(MenuAnimationListe menuAnimationListe) : this ()
@@ -50,8 +54,8 @@ namespace VVA_PPE1.WinForm.FormEncadrant
 
             cbDifficulteAnim.SelectedIndex = (int) selectedAnim.Difficulte;
 
-            lbCodeTypeAnim.SelectedItem = selectedAnim.AnimType;
-            lbCodeTypeAnim.Enabled = false;
+            cbTypeAnim.SelectedItem = selectedAnim.AnimType;
+            cbTypeAnim.Enabled = false;
             
         }
 
@@ -65,39 +69,53 @@ namespace VVA_PPE1.WinForm.FormEncadrant
         {
             if(dtValiditeAnim.Value > DateTime.Now)
             {
-                //creates the animation based on the form
-                Animation anim = new Animation(tbCodeAnim.Text, tbNomAnim.Text, DateTime.Now, dtValiditeAnim.Value,(int) numDureeAnim.Value, (int)numLimiteAge.Value, (float)numTarifAnim.Value
-                       , (int)numNbPlace.Value, rbDescAnim.Text, rbCommAnim.Text, (EdiffAnim)cbDifficulteAnim.SelectedIndex,
-                       ((Animation_Type)lbCodeTypeAnim.SelectedItem).Code, ((Animation_Type)lbCodeTypeAnim.SelectedItem).Nom);
 
-                //if the user is not modifying an animation
-                if (selectedAnim == null)
+                if(string.IsNullOrEmpty(tbCodeAnim.Text))
                 {
-                    anim.AnimType = (Animation_Type)lbCodeTypeAnim.SelectedItem;
+                    MessageBox.Show("Le code de l'animation doit être remplit", "Code de l'animation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else if(string.IsNullOrEmpty(tbNomAnim.Text))
+                {
+                    MessageBox.Show("Le nom de l'animation doit être remplit", "Nom de l'animation", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    //creates the animation based on the form
+                    Animation anim = new Animation(tbCodeAnim.Text, tbNomAnim.Text, DateTime.Now, dtValiditeAnim.Value, (int)numDureeAnim.Value, (int)numLimiteAge.Value, (float)numTarifAnim.Value
+                           , (int)numNbPlace.Value, rbDescAnim.Text, rbCommAnim.Text, (EdiffAnim)cbDifficulteAnim.SelectedIndex,
+                           ((Animation_Type)cbTypeAnim.SelectedItem).Code, ((Animation_Type)cbTypeAnim.SelectedItem).Nom);
 
-                    if (!BDDInteraction.checkIfAnimationExists(anim))
+                    //if the user is not modifying an animation
+                    if (selectedAnim == null)
                     {
-                        if (BDDInteraction.addAnimation(anim))
+                        anim.AnimType = (Animation_Type)cbTypeAnim.SelectedItem;
+
+                        if (!BDDInteraction.checkIfAnimationExists(anim))
                         {
-                            MessageBox.Show("Animation ajoutée corréctement");
+                            if (BDDInteraction.addAnimation(anim))
+                            {
+                                MessageBox.Show("Animation ajoutée corréctement");
+                            }
+                            else
+                                MessageBox.Show("Erreur de requête!");
                         }
                         else
-                            MessageBox.Show("Erreur de requête!");
+                            MessageBox.Show("L'animation existe déjà!");
                     }
-                    else
-                        MessageBox.Show("L'animation existe déjà!");
-                }
-                else // if he does
-                {
-                    if (BDDInteraction.modifyAnimation(anim))
+                    else // if he does
                     {
-                        MessageBox.Show("Animation modifiée");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur lors de la modification de l'animation");
+                        if (BDDInteraction.modifyAnimation(anim))
+                        {
+                            MessageBox.Show("Animation modifiée");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erreur lors de la modification de l'animation");
+                        }
                     }
                 }
+
+                
             }
             else
             {

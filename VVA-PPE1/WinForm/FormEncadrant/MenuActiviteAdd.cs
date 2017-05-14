@@ -86,43 +86,61 @@ namespace VVA_PPE1.WinForm.FormEncadrant
         {
             if(cbCodeAnim.SelectedItem != null && cbEtat.SelectedItem != null)
             {
-                Activite act = new Activite();
-
-                act.Code = cbCodeAnim.SelectedItem.ToString();             
-                act.Date = dtAct.Value;
-             
-                act.NoEncadrant = enc.Numero;           
-
-                act.Etat = (Activite_Etat)cbEtat.SelectedItem;
-
-                act.HrRDV = dtRDV.Value.TimeOfDay;
-
-                act.Prix = (float)numPrix.Value;
-
-                act.HrDebut = dtHrDebut.Value.TimeOfDay;
-                act.HrFin = dtHrFin.Value.TimeOfDay;
-
-                act.Objectif = rtObj.Text;
-
-                if(selectedItem != null)//modif en cours
-                {                 
-                    if(BDDInteraction.modifyActivite(act))
-                        MessageBox.Show("Activité ajoutée");
+                //15 mins de battement entre le rdv et la date actuelle
+                if((DateTime.Now - dtRDV.Value).Minutes <= 15 )
+                {
+                    MessageBox.Show("L'heure de rendez-vous ne doit pas être antérieure à celle actuelle", "Heure de rendez-vous", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if((dtRDV.Value - dtHrDebut.Value).Minutes >= 0 || (dtRDV.Value - dtHrFin.Value).Minutes >= 0 )
+                {
+                    MessageBox.Show("L'heure de rendez-vous doit être correcte", "Heure de rendez-vous", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if((dtHrDebut.Value - dtHrFin.Value).Minutes >= 0)
+                {
+                    MessageBox.Show("L'heure du début doit être correcte", "Heure du début", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    if (!BDDInteraction.checkIfActiviteExists(act))
+                    Activite act = new Activite();
+
+                    act.Code = cbCodeAnim.SelectedItem.ToString();
+                    act.Date = dtAct.Value;
+
+                    act.NoEncadrant = enc.Numero;
+
+                    act.Etat = (Activite_Etat)cbEtat.SelectedItem;
+
+                    act.HrRDV = dtRDV.Value.TimeOfDay;
+
+                    act.Prix = (float)numPrix.Value;
+
+                    act.HrDebut = dtHrDebut.Value.TimeOfDay;
+                    act.HrFin = dtHrFin.Value.TimeOfDay;
+
+                    act.Objectif = rtObj.Text;
+
+                    if (selectedItem != null)//modif en cours
                     {
-                        if (BDDInteraction.addActivite(act))
-                            MessageBox.Show("Activité ajoutée");
-                        else
-                            MessageBox.Show("Activité non ajoutée");                       
+                        if (BDDInteraction.modifyActivite(act))
+                            MessageBox.Show("Activité modifiée", "Activité", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("L'activité existe déjà");
+                        if (!BDDInteraction.checkIfActiviteExists(act))
+                        {
+                            if (BDDInteraction.addActivite(act))
+                                MessageBox.Show("Activité ajoutée", "Activité", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            else
+                                MessageBox.Show("Activité non ajoutée", "Activité", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Une activité existe déjà le "+act.Date.ToLongDateString(), "Activité", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
                     }
                 }
+
+                
                
             }
             else
@@ -135,7 +153,7 @@ namespace VVA_PPE1.WinForm.FormEncadrant
             if (cbCodeAnim.Items.Count == 0)
             {
                 this.Hide();
-                MessageBox.Show("Aucune Animation est disponible");
+                MessageBox.Show("Aucune Animation est disponible", "Animation", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 this.Close();
             }
         }

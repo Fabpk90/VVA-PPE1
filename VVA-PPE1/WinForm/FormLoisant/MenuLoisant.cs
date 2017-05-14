@@ -43,5 +43,13 @@ namespace VVA_PPE1.WinForm.FormLoisant
 
             menuAct.Show();
         }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            menuPrincipal.resetFields();
+            menuPrincipal.Show();
+
+            this.Close();
+        }
     }
 }

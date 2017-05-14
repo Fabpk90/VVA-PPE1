@@ -128,6 +128,11 @@ namespace VVA_PPE1.Modele
             return cmd.ExecuteNonQuery() != 0 ? true : false;
         }
 
+        /// <summary>
+        /// Get the max noinscrip of the loisant
+        /// </summary>
+        /// <param name="loi"> the loisant </param>
+        /// <returns>the last inscription of the loisant given</returns>
         public static int getInscriptionNb(Loisant loi)
         {
             string query = "SELECT MAX(NOINSCRIP) AS NBINSCRIP FROM INSCRIPTION"
@@ -555,7 +560,7 @@ namespace VVA_PPE1.Modele
 
         public static bool checkIfActiviteExists(Activite act)
         {
-            string query = "SELECT CODEANIM FROM ACTIVITE WHERE DATEACT = '" + act.Date.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'";
+            string query = "SELECT CODEANIM FROM ACTIVITE WHERE CODEANIM = '" + act.Code + "' AND DATEACT = '" + act.Date.ToString("yyyy-MM-dd") + "'";
 
             cmd.CommandText = query;
 
@@ -564,7 +569,7 @@ namespace VVA_PPE1.Modele
             bool Exists = rdr.Read();
             rdr.Close();
 
-            return Exists ? true : false;
+            return Exists;
         }
 
         public static bool addActivite(Activite act)
@@ -708,6 +713,14 @@ namespace VVA_PPE1.Modele
             rdr.Close();
 
             return ok;
+        }
+
+        public static bool cancelAnimation(Animation animToDelete)
+        {
+            //récuperer toutes les activités de cette anim, appeler la fonction
+            //supprimer l'animation en param à la fin
+
+            return true;
         }
     }
 }

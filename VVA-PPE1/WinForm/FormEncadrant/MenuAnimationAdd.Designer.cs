@@ -51,7 +51,7 @@
             this.cbDifficulteAnim = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tbCodeAnim = new System.Windows.Forms.TextBox();
-            this.lbCodeTypeAnim = new System.Windows.Forms.ListBox();
+            this.cbTypeAnim = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numLimiteAge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTarifAnim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNbPlace)).BeginInit();
@@ -61,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 7);
+            this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 1;
@@ -70,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 318);
+            this.label2.Location = new System.Drawing.Point(9, 321);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 3;
@@ -79,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 271);
+            this.label3.Location = new System.Drawing.Point(9, 271);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 5;
@@ -88,7 +88,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 219);
+            this.label4.Location = new System.Drawing.Point(9, 219);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(148, 13);
             this.label4.TabIndex = 7;
@@ -115,8 +115,9 @@
             // tbNomAnim
             // 
             this.tbNomAnim.Location = new System.Drawing.Point(12, 137);
+            this.tbNomAnim.MaxLength = 29;
             this.tbNomAnim.Name = "tbNomAnim";
-            this.tbNomAnim.Size = new System.Drawing.Size(100, 20);
+            this.tbNomAnim.Size = new System.Drawing.Size(181, 20);
             this.tbNomAnim.TabIndex = 10;
             // 
             // dtValiditeAnim
@@ -129,7 +130,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 369);
+            this.label7.Location = new System.Drawing.Point(12, 369);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 13);
             this.label7.TabIndex = 14;
@@ -156,7 +157,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(300, 273);
+            this.label10.Location = new System.Drawing.Point(230, 295);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(115, 13);
             this.label10.TabIndex = 20;
@@ -181,9 +182,9 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(344, 368);
+            this.btnAdd.Location = new System.Drawing.Point(344, 369);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(124, 58);
+            this.btnAdd.Size = new System.Drawing.Size(124, 57);
             this.btnAdd.TabIndex = 24;
             this.btnAdd.Text = "Ajouter l\'animation";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -267,9 +268,9 @@
             // btnRetour
             // 
             this.btnRetour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetour.Location = new System.Drawing.Point(233, 368);
+            this.btnRetour.Location = new System.Drawing.Point(233, 369);
             this.btnRetour.Name = "btnRetour";
-            this.btnRetour.Size = new System.Drawing.Size(105, 58);
+            this.btnRetour.Size = new System.Drawing.Size(105, 57);
             this.btnRetour.TabIndex = 28;
             this.btnRetour.Text = "Retour";
             this.btnRetour.UseVisualStyleBackColor = true;
@@ -282,7 +283,7 @@
             0,
             0,
             0});
-            this.numDureeAnim.Location = new System.Drawing.Point(16, 235);
+            this.numDureeAnim.Location = new System.Drawing.Point(12, 235);
             this.numDureeAnim.Maximum = new decimal(new int[] {
             300,
             0,
@@ -312,7 +313,7 @@
             "FACILE",
             "NORMAL",
             "DIFFICILE"});
-            this.cbDifficulteAnim.Location = new System.Drawing.Point(303, 291);
+            this.cbDifficulteAnim.Location = new System.Drawing.Point(233, 313);
             this.cbDifficulteAnim.Name = "cbDifficulteAnim";
             this.cbDifficulteAnim.Size = new System.Drawing.Size(112, 21);
             this.cbDifficulteAnim.TabIndex = 30;
@@ -334,20 +335,21 @@
             this.tbCodeAnim.Size = new System.Drawing.Size(100, 20);
             this.tbCodeAnim.TabIndex = 33;
             // 
-            // lbCodeTypeAnim
+            // cbTypeAnim
             // 
-            this.lbCodeTypeAnim.FormattingEnabled = true;
-            this.lbCodeTypeAnim.Location = new System.Drawing.Point(16, 23);
-            this.lbCodeTypeAnim.Name = "lbCodeTypeAnim";
-            this.lbCodeTypeAnim.Size = new System.Drawing.Size(120, 30);
-            this.lbCodeTypeAnim.TabIndex = 34;
+            this.cbTypeAnim.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTypeAnim.FormattingEnabled = true;
+            this.cbTypeAnim.Location = new System.Drawing.Point(12, 23);
+            this.cbTypeAnim.Name = "cbTypeAnim";
+            this.cbTypeAnim.Size = new System.Drawing.Size(121, 21);
+            this.cbTypeAnim.TabIndex = 35;
             // 
             // MenuAnimationAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 438);
-            this.Controls.Add(this.lbCodeTypeAnim);
+            this.Controls.Add(this.cbTypeAnim);
             this.Controls.Add(this.tbCodeAnim);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.cbDifficulteAnim);
@@ -408,6 +410,6 @@
         private System.Windows.Forms.ComboBox cbDifficulteAnim;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbCodeAnim;
-        private System.Windows.Forms.ListBox lbCodeTypeAnim;
+        private System.Windows.Forms.ComboBox cbTypeAnim;
     }
 }
